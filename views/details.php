@@ -10,7 +10,7 @@
     <div class="details-form-container">
         <h2>Detalles de la máquina</h2>
         <?php
-        include 'database.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
         $pdo = Database::connect();
 
         if (!empty($_GET['id'])) {

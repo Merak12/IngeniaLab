@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>Agregar Máquina</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/lab-admin-equipos.css">
+    <link rel="stylesheet" href="/IngeniaLab/assets/css/lab-admin-equipos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-  <body>
-      <div class="add-form-container">
-          <h2>Agregar nueva máquina</h2>
-        <form action="create.php" method="post">
+<body>
+    <div class="add-form-container">
+        <h2>Agregar nueva máquina</h2>
+        <form id="addMachineForm" action="/IngeniaLab/src/php/insert.php" method="post">
             <div class="form-group">
                 <label for="id">ID:</label>
                 <input type="text" id="id" name="id" required>
@@ -20,14 +21,17 @@
             </div>
             <input type="submit" value="Agregar máquina" class="add-button">
         </form>
-      </div>
-  </body>
+    </div>
+</body>
 </html>
 
+
 <?php
+session_start();
 
 
-include 'database.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
 
 $pdo = Database::connect();
 
@@ -54,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id']) && !empty($_POS
         $sql = "INSERT INTO CRUD_Maquinas (idType, id, nombre, estado, fechaRegistro, tiempoUsoTotal) values(?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($idType, $id, $nombre, $estado, $fechaR, $tiempoUsoTotal));
-        header("Location: index.php");
 
     }
 }

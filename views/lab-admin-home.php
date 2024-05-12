@@ -15,17 +15,7 @@
         <h1>Administrar Equipos</h1>
 
         <!-- <a href="create.php" class='add-button btn'>Agregar equipo</a> -->
-        <button onclick="window.modal.showModal();" class='add-button btn'>Agregar equipo</button>
-
-        <dialog id="modal">
-
-            <?php
-
-                include $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/views/create.php';
-
-            ?>
-
-        </dialog>
+        <button class='add-button btn'><a href="/IngeniaLab/views/create.php" style="color:white; text-decoration: none">Agregar equipo</a></button>
 
         <table class="equipment-table">
             <thead>
@@ -39,9 +29,9 @@
                 <?php
 
                 // require 'database.php';
-
+                require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
                 $pdo = Database::connect();
-                $sql = 'SELECT * FROM CRUD_Maquinas';
+                $sql = 'SELECT * FROM crud_maquinas';
                 $result = $pdo->query($sql);
                 if ($result->rowCount() > 0) {
                     foreach ($result as $row) {
@@ -63,13 +53,14 @@
                         }
                         echo "<td>";
                         echo "<form method='POST' action=''>";
-                        echo "<button onclick='showDetailsModal(" . $row['id'] . ");' class='details-button'>Detalles</button>";
+                        echo "<button onclick='event.preventDefault(); showDetailsModal(" . $row['id'] . ");' class='details-button'>Detalles</button>";
                         echo "<input type='submit' class='edit-button' value='Editar'>";
-                        echo '<a class="delete-button" href="/IngeniaLab/views/delete.php?id='.$row['id'].'">Eliminar</a>';
+                        echo '<a class="delete-button" href="/IngeniaLab/src/php/delete.php?id='.$row['id'].'">Eliminar</a>';
                         echo "</form>";
                         echo "</td>";
                         echo "</tr>";
 
+                        
                     }
                 }
                 else {
@@ -82,67 +73,13 @@
 
     </div>
 
+
+    <dialog id="modal" class="modal">
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/views/create.php'; ?>
+    </dialog>
+
     <script>
-        $(document).ready(function(){
-            $("form").on("submit", function(event){
-                event.preventDefault();
 
-                $.ajax({
-                    url: "/IngeniaLab/src/php/insert.php",
-                    type: "post",
-                    data: $(this).serialize(),
-                    success: function(response){
-                        // Aquí puedes manejar la respuesta del servidor
-                        window.modal.close();
-                        // alert(response);
-
-                        $.ajax({
-                            url: "get_machines.php",
-                            type: "get",
-                            dataType: "json",
-                            success: function(machines){
-                                // Actualizar la tabla con la lista de máquinas
-                                var tbody = $(".equipment-table tbody");
-                                tbody.empty();
-                                machines.forEach(function(machine){
-                                    var row = "<tr><td>" + machine.nombre + "</td><td>" + machine.estado + "</td><td>";
-                                    row += "<form method='POST' action=''>";
-                                    row += "<input type='submit' class='details-button' value='Detalles'>";
-                                    row += "<input type='submit' class='edit-button' value='Editar'>";
-                                    row += '<a class="delete-button" href="/IngeniaLab/src/php/delete.php?id='+machine.id+'">Eliminar</a>';
-                                    row += "</form></td></tr>";
-                                    tbody.append(row);
-                                });
-                            }
-                        });
-
-                    }
-                });
-            });
-        });
-
-        function updateTable() {
-
-            console.log('Updating table...')
-            $.ajax({
-                url: "get_machines.php",
-                type: "get",
-                dataType: "json",
-                success: function(machines){
-                    var tbody = $(".equipment-table tbody");
-                    tbody.empty();
-                    machines.forEach(function(machine){
-                        var row = "<tr><td>" + machine.nombre + "</td><td>" + machine.estado + "</td><td>";
-                        row += "<form method='POST' action=''>";
-                        row += "<input type='submit' class='details-button' value='Detalles'>";
-                        row += "<input type='submit' class='edit-button' value='Editar'>";
-                        row += '<a class="delete-button" href="/IngeniaLab/src/php/delete.php?id='+machine.id+'">Eliminar</a>';
-                        row += "</form></td></tr>";
-                        tbody.append(row);
-                    });
-                }
-            });
-        }
 
         function showDetailsModal(id) {
             var dialog = document.getElementById('modal');

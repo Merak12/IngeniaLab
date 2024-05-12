@@ -1,6 +1,6 @@
 <?php
 
-include 'database.php';
+include $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
 
 $pdo = Database::connect();
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['id']) && !empty($_POS
         $sql = "INSERT INTO CRUD_Maquinas (idType, id, nombre, estado, fechaRegistro, tiempoUsoTotal) values(?, ?, ?, ?, ?, ?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($idType, $id, $nombre, $estado, $fechaR, $tiempoUsoTotal));
-        echo "Maquina agregada exitosamente";
+        header("Location: /IngeniaLab/views/lab-admin-home.php");
 
     }
 }
