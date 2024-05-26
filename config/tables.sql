@@ -1,6 +1,6 @@
 CREATE TABLE Carreras (
 
-ID VARCHAR(4),
+ID VARCHAR(4) PRIMARY KEY,
 carrera VARCHAR(100)
 
 );
@@ -74,6 +74,8 @@ carrera VARCHAR(4),
 FOREIGN KEY (carrera) REFERENCES Carreras(ID) ON DELETE RESTRICT
 
 );
+
+INSERT INTO Alumnos VALUE ("Humberto Pérez Galindo", "A01732526", "A01732526@tec.mx", "ITC");
 
 CREATE TABLE Maestros (
 

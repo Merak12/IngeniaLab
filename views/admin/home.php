@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Equipos</title>
+    <title>Admin Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/IngeniaLab/assets/css/lab-admin-equipos.css">
     <link rel="stylesheet" href="/IngeniaLab/assets/css/styles.css">
@@ -97,12 +97,28 @@
 
 
     <div class="main-content">
+        <table>
+            <h1>Administrar Equipos</h1>
+            <!-- <a href="create.php" class='add-button btn'>Agregar equipo</a> -->
+            <!-- <button class='add-button btn'> Agregar equipo </button> -->
 
-        <h1>Administrar Equipos</h1>
+            <button onclick="window.modal.showModal();" class='add-button btn'>Agregar equipo</button>
 
-        <!-- <a href="create.php" class='add-button btn'>Agregar equipo</a> -->
-        <button class='add-button btn'><a href="/IngeniaLab/views/create.php" style="color:white; text-decoration: none">Agregar equipo</a></button>
+                <dialog id="modal">
 
+                    <?php
+
+                        include $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/views/create-maquina.php';
+
+                    ?>
+
+                </dialog>
+            
+        </table>
+        <table align='top-rigth'>
+            <h1>Agregar usuario </h1>
+            <button class='add-button btn'><a href="/IngeniaLab/views/register.html" style="color:white; text-decoration: none">Agregar usuario</a></button>
+        </table>
         <table class="equipment-table">
             <thead>
                 <tr>
@@ -117,7 +133,7 @@
                 // require 'database.php';
                 require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
                 $pdo = Database::connect();
-                $sql = 'SELECT * FROM crud_maquinas';
+                $sql = 'SELECT * FROM Maquinas';
                 $result = $pdo->query($sql);
                 if ($result->rowCount() > 0) {
                     foreach ($result as $row) {
