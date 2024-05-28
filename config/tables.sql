@@ -77,22 +77,24 @@ FOREIGN KEY (carrera) REFERENCES Carreras(ID) ON DELETE RESTRICT
 
 INSERT INTO Alumnos VALUE ("Humberto Pérez Galindo", "A01732526", "A01732526@tec.mx", "ITC");
 
-CREATE TABLE Maestros (
+CREATE TABLE Tipos_usuario (
 
-ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-nombre VARCHAR(60),
-nColab VARCHAR(9),
-correo VARCHAR(16)
+    id INT PRIMARY KEY,
+    tipo VARCHAR(50)
 
 );
 
-CREATE TABLE Administradores (
+INSERT INTO Tipos_usuario VALUES (3, "Administrador"), (2, "Administrador");
 
-ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-nombre VARCHAR(60),
-nColab VARCHAR(9),
-correo VARCHAR(16),
-clave VARCHAR(255)
+CREATE TABLE Usuarios (
+
+    id VARCHAR(9) PRIMARY KEY,
+    nombre VARCHAR(60),
+    correo VARCHAR(16),
+    clave VARCHAR(255),
+    idType INT,
+
+    FOREIGN KEY (idType) REFERENCES Tipos_usuario(id) ON DELETE RESTRICT
 
 );
 
@@ -110,6 +112,8 @@ funcionamiento INT,
 FOREIGN KEY (tipoMaquina) REFERENCES Tipos_maquina(idType) ON DELETE RESTRICT
 
 );
+
+INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUE ("156245", "Taladro", 3, "2024-12-12", 0.0, 0, 0);
 
 CREATE TABLE Registro_uso_maquinas (
 

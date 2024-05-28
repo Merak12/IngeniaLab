@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require_once '../../config/database.php';
+
+    require_once '/../../config/database.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -10,7 +11,7 @@
         $conn = Database::connect();
 
         try{
-            $query = $conn->prepare("SELECT idType, correo, password FROM MDP_V1_Usuarios WHERE correo = :username");
+            $query = $conn->prepare("SELECT idType, correo, clave FROM Adminisradores WHERE correo = :username");
             $query->bindParam(':username', $username);
             
             $query->execute();

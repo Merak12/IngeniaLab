@@ -3,8 +3,8 @@
     font-family: 'Open Sans' ;
     --text-primary: #b6b6b6;
     --text-secondary: #ececec ;
-    --bg-primary: #23233e ;
-    --bg-secondary: #141418 ;
+    --bg-primary: #4B6FED;
+    --bg-secondary: #C4C4C4;
 
 }
 
@@ -31,11 +31,11 @@ body::-webkit-scrollbar-thumb {
 .navbar {
     width: 5rem;
     height: 100vh;
-    position: absolute; /* Change to absolute positioning */
+    position: absolute;
     background-color: var(--bg-primary);
     transition: width 200ms ease;
-    top: 0; /* Add top: 0 to position it at the top */
-    left: 0; /* Add left: 0 to position it on the left */
+    top: 0;
+    left: 0;
 }
 
 .navbar-nav {
@@ -74,6 +74,7 @@ body::-webkit-scrollbar-thumb {
 .link-text {
     display: none;
     margin-left: 1rem;
+    color: black;
 }
 
 .nav-link svg {
@@ -83,11 +84,11 @@ body::-webkit-scrollbar-thumb {
 
 .navbar:hover {
     width: 16rem;
-    z-index: 2; /* Added z-index property */
+    z-index: 2;
 }
 
 .navbar:hover main {
-    margin-left: 16rem; /* Adjust the value as needed */
+    margin-left: 16rem;
   }
 
 .navbar:hover .link-text {
