@@ -32,7 +32,7 @@ function insertaradmin($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM USUARIOS WHERE id = :id");
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE id = :id");
         $query->bindParam(':id', $id);
         $query->execute();
 
@@ -41,14 +41,14 @@ function insertaradmin($id, $name, $email, $password){
             exit();
         } 
         else{
-            $query = $conn->prepare("INSERT INTO USUARIOS (id, nombre, correo, clave, idType) VALUES (:id, :name, :email, :hashed_password, 3)");
+            $query = $conn->prepare("INSERT INTO Usuarios (id, nombre, correo, clave, idType) VALUES (:id, :name, :email, :hashed_password, 3)");
             $query->bindParam(':id', $id);
             $query->bindParam(':name', $name);
             $query->bindParam(':email', $email);
             $query->bindParam(':hashed_password', $hashed_password);
             $query->execute();
 
-            header('Location: /IngeniaLab/views/lab-admin-home.php');
+            header('Location: /IngeniaLab/src/views/home.php');
             exit();
         }
     } catch (PDOException $e) {
@@ -64,7 +64,7 @@ function insertarmaestro($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM USUARIOS WHERE id = :id");
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE id = :id");
         $query->bindParam(':id', $id);
         $query->execute();
 
@@ -73,7 +73,7 @@ function insertarmaestro($id, $name, $email, $password){
             exit();
         } 
         else{
-            $query = $conn->prepare("INSERT INTO USUARIOS (id, nombre, correo, password, idType) VALUES (:id, :name, :email, :hashed_password, 2)");
+            $query = $conn->prepare("INSERT INTO Usuarios (id, nombre, correo, password, idType) VALUES (:id, :name, :email, :hashed_password, 2)");
             $query->bindParam(':id', $id);
             $query->bindParam(':name', $name);
             $query->bindParam(':email', $email);

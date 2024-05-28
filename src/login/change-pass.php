@@ -13,12 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $conn = Database::connect();
         try {
-            $query = $conn->prepare("UPDATE USUARIOS SET password = :hashed_password WHERE correo = :username");
+            $query = $conn->prepare("UPDATE Usuarios SET clave = :hashed_password WHERE correo = :username");
             $query->bindParam(':hashed_password', $hashed_password);
             $query->bindParam(':username', $username);
             $query->execute();
 
-            header('Location: /IngeniaLab/views/index.php');
+            header('Location: /IngeniaLab/src/views/home.php');
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

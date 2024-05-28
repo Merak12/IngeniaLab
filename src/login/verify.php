@@ -9,15 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = Database::connect();
 
     try {
-        $query = $conn->prepare("SELECT * FROM USUARIOS WHERE correo = :username");
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :username");
         $query->bindParam(':username', $username);
         $query->execute();
 
         if ($query->rowCount() > 0) {
-            header('Location: /IngeniaLab/views/change-pass.html');
+            header('Location: /IngeniaLab/src/views/change-pass.html');
             exit();
         } else {
-            header('Location: /IngeniaLab/views/verify.php?error=Usernotfound');
+            header('Location: /IngeniaLab/src/login/verify.php?error=Usernotfound');
             exit();
         }
     } catch (PDOException $e) {
@@ -27,6 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Database::disconnect();
     }
 
-    header('Location: /IngeniaLab/views/verify.php?error=InvalidAccess');
+    header('Location: /IngeniaLab/src/login/verify.php?error=InvalidAccess');
     exit();
 }

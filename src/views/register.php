@@ -6,8 +6,8 @@
         <title>Sistema de Laboratorios</title>
         <meta name="description" content="Sistema de gestion del material de laboratorio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/IngeniaLab/assets/css/styles.css">
-        <link rel="secondary-stylesheet" herf= "/IngeniaLab/assets/css/register.css">
+        <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css">
+        <link rel="secondary-stylesheet" herf= "/IngeniaLab/src/login/change-pass.php">
     </head>
     <script>
         function seleccionar(checkbox){
@@ -21,14 +21,14 @@
         <table>
             <tr>
             <td>
-              <img src="/IngeniaLab/assets/images/ITESM Logo.png" width="100" alt="ITESM Logo">
+              <img src="/IngeniaLab/public/assets/images/ITESM Logo SF.png" width="100" alt="ITESM Logo">
             </td>
             <td>
               <h1>Laboratorio de Ingenieria</h1>
             </td>
           </tr>
         </table>
-        <form action="/IngeniaLab/src/php/register.php" method="POST">
+        <form action="/IngeniaLab/src/login/register.php" method="POST">
         <table align="center">
             <tr align="center">
                 <td>
