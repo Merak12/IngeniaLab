@@ -32,8 +32,8 @@ function insertaradmin($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM Usuarios WHERE id = :id");
-        $query->bindParam(':id', $id);
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email");
+        $query->bindParam(':email', $email);
         $query->execute();
 
         if ($query->rowCount() > 0){
@@ -64,8 +64,8 @@ function insertarmaestro($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM Usuarios WHERE id = :id");
-        $query->bindParam(':id', $id);
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email");
+        $query->bindParam(':email', $email);
         $query->execute();
 
         if ($query->rowCount() > 0){
@@ -73,7 +73,7 @@ function insertarmaestro($id, $name, $email, $password){
             exit();
         } 
         else{
-            $query = $conn->prepare("INSERT INTO Usuarios (id, nombre, correo, password, idType) VALUES (:id, :name, :email, :hashed_password, 2)");
+            $query = $conn->prepare("INSERT INTO Usuarios (id, nombre, correo, clave, idType) VALUES (:id, :name, :email, :hashed_password, 2)");
             $query->bindParam(':id', $id);
             $query->bindParam(':name', $name);
             $query->bindParam(':email', $email);

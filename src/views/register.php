@@ -6,8 +6,7 @@
         <title>Sistema de Laboratorios</title>
         <meta name="description" content="Sistema de gestion del material de laboratorio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css">
-        <link rel="secondary-stylesheet" herf= "/IngeniaLab/src/login/change-pass.php">
+        <link rel="stylesheet" href="/IngeniaLab/public/css/register.css">
     </head>
     <script>
         function seleccionar(checkbox){
@@ -29,79 +28,82 @@
           </tr>
         </table>
         <form action="/IngeniaLab/src/login/register.php" method="POST">
-        <table align="center">
-            <tr align="center">
-                <td>
-                    <h2>
-                        Ingresa tu matricula:
-                    </h2>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="text" id="id" name="id" placeholder="Matricula" required>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <h2>
-                        Ingresa tu nombre:
-                    </h2>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="text" id="name" name="name" placeholder="Nombre" required>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <h2>
-                        Ingresa tu Correo:
-                    </h2>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="text" id="email" name="email" placeholder="Correo" required>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <h2>
-                        Ingresa tu contraseña:
-                    </h2>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <h2>
-                        Tipo de usuario:
-                    </h2>
-                    <label for="adminiastrador">
-                        <input type="checkbox" id="administrador" name="usuario" value="administrador" onclick="seleccionar(this)">
-                        Administrador
-                    </label><br>
-                    <label for="maestro">
-                        <input type="checkbox" id="maestro" name="usuario" value="maestro" onclick="seleccionar(this)">
-                        Maestro
-                    </label><br>
-                </td>
-            </tr>
-        </table>
-        <table align="center">
-            <tr align="center">
-                <td>
-                    <button type="submit" style="padding: 10px 20px; font-size: 16px" margin-top="30px">
-                        Agregar
-                    </button>
-                </td>
-            </tr>
-        </table>
+            <div>
+                <table align="center">
+                    <tr align="center">
+                        <td>
+                            <h2>
+                                Ingresa la matricula:
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input type="text" id="id" name="id" placeholder="Matricula" required>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <h2>
+                                Ingresa el nombre:
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input type="text" id="name" name="name" placeholder="Nombre" required>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <h2>
+                                Ingresa el correo:
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input type="text" id="email" name="email" placeholder="Correo" required>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <h2>
+                                Ingresa la contraseña:
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <h2>
+                                Tipo de usuario:
+                            </h2>
+                            <label for="adminiastrador">
+                                <input type="checkbox" id="administrador" name="usuario" value="administrador" onclick="seleccionar(this)">
+                                Administrador
+                            </label><br>
+                            <label for="maestro">
+                                <input type="checkbox" id="maestro" name="usuario" value="maestro" onclick="seleccionar(this)">
+                                Maestro
+                            </label><br>
+                        </td>
+                    </tr>
+                </table>
+                <table align="center">
+                    <tr align="center">
+                        <td>
+                            <button type="submit" style="padding: 10px 20px; font-size: 16px" margin-top="30px">
+                                Agregar
+                             </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
     </body>
 </html>
