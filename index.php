@@ -4,46 +4,52 @@
     <meta charset="utf-8">
     <title>Admin Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/IngeniaLab/assets/css/lab-admin-equipos.css">
-    <link rel="stylesheet" href="/IngeniaLab/assets/css/styles.css">
-    <link rel="stylesheet" href="/IngeniaLab/assets/css/styleNav.css">
+    <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css">
+    <link rel="stylesheet" href="/IngeniaLab/public/css/students.css">
+    <link rel="stylesheet" href="/IngeniaLab/public/css/navBar.css">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
 
-<script src="/IngeniaLab/assets/js/navbar"></script>
-<nav class="navbar">
+    <div class="navbar" id="sidebar">
         <ul class="navbar-nav">
-
-            <li class="logo">
-                <a href="#" class="nav-link">
-                    <span class="link-text">Laboratorios de Ingeniería</span>
+            <li class="nav-item">
+                <a href="../views/home.php" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="link-text">Inicio</span>
                 </a>
             </li>
-
-            <li class="navbar-item">
-                <a id="cerrarSesion" href="/IngeniaLab/views/index.php" class="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
-              style="margin:20px 30px 0 20px" viewBox="0 0 16 16">
-              <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3zm1 13h8V2H4z">
-              </path>
-              <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0"></path>
-            </svg>
+            <li class="nav-item">
+                <a href="src/views/login.php" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
                     <span class="link-text">Iniciar Sesión</span>
                 </a>
             </li>
-
         </ul>
-    </nav>
-
+    </div>
 
     <div class="main-content">
-        <table>
+        <div class="header">
+            <h1>Administrar Equipos</h1>
 
-            <h1>Equipos</h1>
+            <button id="openModal" class="add-button">Agregar Maquina</button>
+
+                <?php
+                
+                    require_once "../machines/create-maquina.php"
+                
+                ?>
             
-        </table>
-        <table class="equipment-table">
+        </div>
+
+        <div class="search-bar">
+                <input type="text" placeholder="Buscar por nombre, correo, etc.">
+                <button class="search-button">Buscar</button>
+        </div>
+        <table class="user-table">
             <thead>
                 <tr>
                     <th>Nombre Máquina</th>
@@ -53,7 +59,7 @@
             </thead>
             <tbody>
                 <?php
-                
+
                 require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
                 $pdo = Database::connect();
                 $sql = 'SELECT * FROM Maquinas';
@@ -129,12 +135,13 @@
         }
 
         function deleteMachine(id) {
-        window.location.href = '/IngeniaLab/src/php/delete.php?id=' + id;
+        window.location.href = '/IngeniaLab/src/machines/delete.php?id=' + id;
         }
 
 
 
     </script>
+    <script src="/IngeniaLab/public/js/modal.js"></script>
 
 </body>
 </html>

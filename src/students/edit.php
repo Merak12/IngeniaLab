@@ -1,25 +1,24 @@
-<div id="modalAdd" class="modalAdd">
-
-    <div class="modalAdd-content">
+<div id="modalEdit" class="modalEdit">
+    <div class="modalEdit-content">
         <span class="close">&times;</span>
-        <h2>Agregar Usuario</h2>
-        
-        <form action="insert-estudiante.php" method="POST">
+        <h2>Editar Estudiante</h2>
+        <form id="editForm">
             <div class="form-group">
-                <label for="firstname">Nombre</label>
-                <input type="text" id="name" name="name" required>
+                <label for="editNombre">Nombre</label>
+                <input type="hidden" id="editID" name="ID">
+                <input type="text" id="editNombre" name="nombre" required>
             </div>
             <div class="form-group">
-                <label for="lastname">Matricula</label>
-                <input type="text" id="matricula" name="matricula" required>
+                <label for="editMatricula">Matricula</label>
+                <input type="text" id="editMatricula" name="matricula" required>
             </div>
             <div class="form-group">
-                <label for="phone">Correo institucional</label>
-                <input type="text" id="mail" name="mail" required>
+                <label for="editCorreo">Correo electrónico</label>
+                <input type="email" id="editCorreo" name="correo" required>
             </div>
             <div class="form-group">
-                <label for="select">Carrera</label>
-                <select id="carrera" name="carrera" required>
+                <label for="editCarrera">Carrera</label>
+                <select id="editCarrera" name="carrera" required>
                     <option value="">Selecciona carrera</option>
                     <?php
                         require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
@@ -35,10 +34,9 @@
                 </select>
             </div>
             <div class="form-buttons">
-                <button type="submit" class="btn-accept">Aceptar</button>
+                <button type="submit" class="btn-accept">Guardar Cambios</button>
                 <button type="button" class="btn-cancel">Cerrar</button>
             </div>
         </form>
     </div>
-    
 </div>

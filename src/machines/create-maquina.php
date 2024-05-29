@@ -10,6 +10,7 @@
 <body>
     <div id="modal" class="modal">
         <div class="modal-content">
+            <span class="close">&times;</span>
             <h2>Agregar nueva máquina</h2>
             <form id="addMachineForm" method="post">
 
@@ -42,11 +43,14 @@
                 </div>
 
                 <input type="submit" value="Agregar máquina" class="add-button">
-
+                <div class="form-buttons">
+                    <button type="submit" class="btn-accept">Aceptar</button>
+                    <button type="button" class="btn-cancel">Cerrar</button>
+                </div>
             </form>
         </div>
     </div>
-    <script src="/IngeniaLab/assets/js/modal.js"></script>
+    <script src="/IngeniaLab/public/js/modal.js"></script>
 </body>
 </html>
 
