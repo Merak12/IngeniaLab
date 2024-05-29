@@ -1,7 +1,8 @@
 <?php
+
     session_start();
 
-    require_once '/../../config/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -10,8 +11,9 @@
 
         $conn = Database::connect();
 
-        try{
-            $query = $conn->prepare("SELECT idType, correo, clave FROM Adminisradores WHERE correo = :username");
+        try {
+
+            $query = $conn->prepare("SELECT correo, clave, idType FROM Usuarios WHERE correo = :username");
             $query->bindParam(':username', $username);
             
             $query->execute();
@@ -20,26 +22,27 @@
                 $user = $query->fetch(PDO::FETCH_ASSOC);
 
                 if(password_verify($password, $user['password'])){
+
                     $_SESSION['idType'] = $user['idType'];
                     $_SESSION['correo'] = $user['correo'];
 
                     if($_SESSION['idType'] == 3){
-                        header('Location: /IngeniaLab/views/lab-admin-home.php');
+                        header('Location: /IngeniaLab/src/views/home.php');
                         exit();
                     } elseif($_SESSION['idType'] == 2){
-                        header('Location: /IngeniaLab/views/profesor.php');
+                        header('Location: /IngeniaLab/src/views/profesor.php');
                         exit();
                     } else{//Incorrect idType
-                        header('Location: /IngeniaLab/views/index.php?error=InvalidType');
+                        header('Location: /IngeniaLab/src/views/login.php?error=InvalidType');
                         exit();                        
                     }
                 } else{
                     //Incorrect Password
-                    header('Location: /IngeniaLab/views/index.php?error=IncorrectPassword');
+                    header('Location: /IngeniaLab/src/views/login.php?error=IncorrectPassword');
                     exit();
                 }
             }else{//User not found
-                header('Location: /IngeniaLab/views/index.php?error=Usernotfound');
+                header('Location: /IngeniaLab/src/views/login.php?error=Usernotfound');
                 exit();
             }
         } catch(PDOException $e){
@@ -48,9 +51,10 @@
 
         //Database disconection
         Database::disconnect();
+
     } else{
         //PHP file unable to access
-        header('Location: /IngeniaLab/views/index.php?error=InvalidAccess');
+        header('Location: /IngeniaLab/index.php?error=InvalidAccess');
         exit();
     }
 ?>

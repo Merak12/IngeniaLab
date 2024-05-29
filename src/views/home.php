@@ -20,11 +20,11 @@
         <div class="header">
             <h1>Administrar Equipos</h1>
 
-            <button id="openModal" class="add-button">Agregar Maquina</button>
+            <button id="openAddMachineModal" class="add-button">Agregar Maquina</button>
 
                 <?php
                 
-                    require_once "../machines/create-maquina.php"
+                    require "../machines/create.php"
                 
                 ?>
             
@@ -126,6 +126,7 @@
 
 
     </script>
+
     <script src="/IngeniaLab/public/js/modal.js"></script>
 
 </body>
