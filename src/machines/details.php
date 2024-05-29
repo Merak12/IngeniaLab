@@ -1,43 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Detalles de la Máquina</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/lab-admin-equipos.css">
-</head>
-<body>
-    <div class="details-form-container">
-        <h2>Detalles de la máquina</h2>
-        <?php
-        require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+
+    if ($id > 0) {
         $pdo = Database::connect();
-
-        // if (!empty($_GET['id'])) {
-            $id = $_GET['id'];
-
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM Maquinas WHERE id = 1";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($id));
-            $data = $q->fetch(PDO::FETCH_ASSOC);
-
-            if ($data) {
-                echo "<div class='form-group'><label>ID:</label> <span>" . htmlspecialchars($data['id']) . "</span></div>";
-                echo "<div class='form-group'><label>Nombre:</label> <span>" . htmlspecialchars($data['nombre']) . "</span></div>";
-                echo "<div class='form-group'><label>Estado:</label> <span>" . ($data['estado'] == 1 ? 'Activo' : 'Inactivo') . "</span></div>";
-                echo "<div class='form-group'><label>Fecha de Registro:</label> <span>" . htmlspecialchars($data['fechaRegistro']) . "</span></div>";
-                echo "<div class='form-group'><label>Tiempo de Uso Total:</label> <span>" . htmlspecialchars($data['tiempoUsoTotal']) . "</span></div>";
-            } else {
-                echo "<p>No se encontró información para la máquina con ID $id.</p>";
-            }
-        // } else {
-        //     echo "<p>ID no proporcionado.</p>";
-        // }
-
+        $sql = "SELECT * FROM Maquinas WHERE ID = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $machine = $stmt->fetch(PDO::FETCH_ASSOC);
         Database::disconnect();
-        ?>
-        <button onclick="document.getElementById('modal').close();">Cerrar</button>
-    </div>
-</body>
-</html>
+
+        if ($machine) {
+            echo "<p><strong>Número de serie:</strong> " . htmlspecialchars($machine['numSerie']) . "</p>";
+            echo "<p><strong>Nombre:</strong> " . htmlspecialchars($machine['nombre']) . "</p>";
+            echo "<p><strong>Tipo de Máquina:</strong> " . htmlspecialchars($machine['tipoMaquina']) . "</p>";
+            echo "<p><strong>Fecha de Registro:</strong> " . htmlspecialchars($machine['fechaRegistro']) . "</p>";
+            echo "<p><strong>Tiempo de Uso:</strong> " . htmlspecialchars($machine['tiempoUso']) . "</p>";
+            echo "<p><strong>Estado:</strong> " . htmlspecialchars($machine['estado']) . "</p>";
+            echo "<p><strong>Funcionamiento:</strong> " . htmlspecialchars($machine['funcionamiento']) . "</p>";
+        } else {
+            echo "<p>No se encontraron detalles para esta máquina.</p>";
+        }
+    }
+}
+?>

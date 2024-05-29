@@ -116,6 +116,7 @@ INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, es
 
 CREATE TABLE Registro_uso_maquinas (
 
+    idUsuario VARCHAR(9),
     idMaquina INT,
     tiempo DATETIME,
     estado INT,

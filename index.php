@@ -17,12 +17,6 @@
     <div class="navbar" id="sidebar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="../views/home.php" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span class="link-text">Inicio</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="src/views/login.php" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="link-text">Iniciar Sesión</span>
