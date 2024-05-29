@@ -13,11 +13,11 @@
         require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
         $pdo = Database::connect();
 
-        if (!empty($_GET['id'])) {
+        // if (!empty($_GET['id'])) {
             $id = $_GET['id'];
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM Maquinas WHERE id = ?";
+            $sql = "SELECT * FROM Maquinas WHERE id = 1";
             $q = $pdo->prepare($sql);
             $q->execute(array($id));
             $data = $q->fetch(PDO::FETCH_ASSOC);
@@ -31,9 +31,9 @@
             } else {
                 echo "<p>No se encontró información para la máquina con ID $id.</p>";
             }
-        } else {
-            echo "<p>ID no proporcionado.</p>";
-        }
+        // } else {
+        //     echo "<p>ID no proporcionado.</p>";
+        // }
 
         Database::disconnect();
         ?>

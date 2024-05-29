@@ -1,26 +1,19 @@
 <div id="addMachineModal" class="modal">
-
-    <div class="modal-content">
-
-        <span class="close">&times;</span>
-        
+    <div class="modalAdd-content">
+        <span class="close" data-modal="addMachineModal">&times;</span>
         <h2>Agregar nueva máquina</h2>
-        <form id="addMachineForm" method="post">
-
+        <form id="addMachineForm">
             <div class="form-group">
                 <label for="numSerie">Número de serie: </label>
                 <input type="text" id="numSerie" name="numSerie" required>
             </div>
-
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
             </div>
-
             <div class="form-group">
                 <label class="control-label">Tipo maquina</label>
-
-                <select name="tipo_maquina">
+                <select name="tipo_maquina" id="tipo_maquina">
                     <option value="">Selecciona tipo de maquinaria</option>
                     <?php
                         require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
@@ -32,55 +25,55 @@
                         Database::disconnect();
                     ?>
                 </select>
-
             </div>
-
-            <input type="submit" value="Agregar máquina" class="add-button">
             <div class="form-buttons">
                 <button type="submit" class="btn-accept">Aceptar</button>
-                <button type="button" class="btn-cancel">Cerrar</button>
+                <button type="button" class="cancel-btn" data-modal="addMachineModal">Cerrar</button>
             </div>
         </form>
+        <div id="message"></div>
     </div>
-
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById('addMachineModal');
+    var closeModalBtns = document.querySelectorAll('.close, .cancel-btn');
+    var form = document.getElementById('addMachineForm');
+    var messageDiv = document.getElementById('message');
 
-<?php
-// session_start();
+    closeModalBtns.forEach(function(btn) {
+        btn.onclick = function() {
+            modal.style.display = 'none';
+            window.location.reload();  // Recargar la página al cerrar la ventana modal
+        }
+    });
 
+    form.onsubmit = function(event) {
+        event.preventDefault();
 
+        var formData = new FormData(form);
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
-
-$pdo = Database::connect();
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['numSerie']) && !empty($_POST['nombre'])) {
-
-    $numSerie = $_POST['numSerie'];
-    $nombre = $_POST['nombre'];
-    $tipoM = $_POST['tipo_maquina'];
-    $fechaR = "2024-03-20"; // Fecha actual.
-    $tiempoUsoTotal = 0.0; // Tiempo de uso total inicial.
-    $estado = 1; // Estado inicial es 0.
-    $func = 1;
-
-    // $sql0 = "SELECT * FROM Maquinas WHERE id = ?";
-    // $stmt = $pdo->prepare($sql0);
-    // $stmt->execute([$id]);
-    // $result = $stmt->fetchAll();
-
-    // if (count($result) > 0) {
-    //     echo "<p>El ID ya está en uso. Por favor, elija otro.</p>";
-    // }
-    // else {
-
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO Maquinas (numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcoinamiento) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($numSerie, $nombre, $tipoM, $fechaR, $tiempoUsoTotal, $estado, $func));
-
-    // }
-}
-Database::disconnect();
-?>
+        fetch('/IngeniaLab/src/machines/add_machine.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.innerHTML = '<p style="color:green;">' + data.message + '</p>';
+                form.reset();
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                    window.location.reload();  // Recargar la página después de mostrar el mensaje de éxito
+                }, 1500);  // Espera 1.5 segundos antes de cerrar la ventana modal y recargar la página
+            } else {
+                messageDiv.innerHTML = '<p style="color:red;">' + data.message + '</p>';
+            }
+        })
+        .catch(error => {
+            messageDiv.innerHTML = '<p style="color:red;">Error al procesar la solicitud.</p>';
+        });
+    };
+});
+</script>

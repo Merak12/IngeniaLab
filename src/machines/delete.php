@@ -1,16 +1,18 @@
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
-	$id = 0;
-	if ( !empty($_GET['id'])) {
-		$id = $_REQUEST['id'];
-	}
+require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
 
-		$pdo = Database::connect();
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "DELETE FROM Maquinas WHERE id = ?";
-		$q = $pdo->prepare($sql);
-		$q->execute(array($id));
-		Database::disconnect();
-		header("Location: /IngeniaLab/views/lab-admin-home.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = intval($_POST['id']);
 
+    if ($id > 0) {
+        $pdo = Database::connect();
+        $sql = "DELETE FROM Maquinas WHERE ID = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        Database::disconnect();
+    }
+}
+
+header("Location: /IngeniaLab/src/views/home.php");
+exit;
 ?>

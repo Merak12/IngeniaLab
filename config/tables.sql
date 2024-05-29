@@ -116,13 +116,15 @@ INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, es
 
 CREATE TABLE Registro_uso_maquinas (
 
-idMaquina INT,
-tiempoInicio DATETIME,
-tiempoFin DATETIME,
+    idMaquina INT,
+    tiempo DATETIME,
+    estado INT,
 
-FOREIGN KEY (idMaquina) REFERENCES Maquinas(ID) ON DELETE RESTRICT
+    FOREIGN KEY (idMaquina) REFERENCES Maquinas(ID) ON DELETE RESTRICT
 
 );
+
+INSERT INTO Registro_uso_maquinas VALUES (1, "2024-03-20 12:10:00", 1), (1, "2024-03-20 12:10:00", 2);
 
 CREATE TABLE Reservas (
 
