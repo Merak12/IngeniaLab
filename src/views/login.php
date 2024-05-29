@@ -6,7 +6,7 @@
       <title>Sistema de Laboratorios</title>
       <meta name="description" content="Sistema de gestion del material de laboratorio">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="IngeniaLab/public/css/styles.css">
+      <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css">
       <link rel="secondary-stylesheet" herf="/IngeniaLab/public/css/register.css">
   </head>
     
@@ -16,7 +16,7 @@
 
       <tr>
         <td>
-          <img src="/IngeniaLab/assets/images/ITESM Logo.png" width="100" alt="ITESM Logo">
+          <img src="/IngeniaLab/public/assets/images/ITESM Logo SF.png" width="100" alt="ITESM Logo">
         </td>
         <td>
           <h1>Laboratorio de Ingenieria</h1>
@@ -28,7 +28,7 @@
     <table align="center">
       <tr>
         <td>
-          <img src="/IngeniaLab/assets/images/robot.jpg" width="150 px">
+          <img src="/IngeniaLab/public/assets/images/robot.jpg" width="150 px">
         </td>
       </tr>
     </table>
@@ -60,7 +60,7 @@
 
         <tr>
           <td align="center">
-            <button style="padding: 10px 20px; font-size: 16px">
+            <button type="button" onclick="location.href='/IngeniaLab/src/views/verify-email.html'" style="padding: 10px 20px; font-size: 16px">
             ¿Olvido su contrasena?
             </button>
           </td>

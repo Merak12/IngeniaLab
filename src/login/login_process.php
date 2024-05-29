@@ -21,7 +21,7 @@
             if($query->rowCount() > 0){
                 $user = $query->fetch(PDO::FETCH_ASSOC);
 
-                if(password_verify($password, $user['password'])){
+                if(password_verify($password, $user['clave'])){
 
                     $_SESSION['idType'] = $user['idType'];
                     $_SESSION['correo'] = $user['correo'];
@@ -30,7 +30,7 @@
                         header('Location: /IngeniaLab/src/views/home.php');
                         exit();
                     } elseif($_SESSION['idType'] == 2){
-                        header('Location: /IngeniaLab/src/views/profesor.php');
+                        header('Location: /IngeniaLab/src/views/profesor/profesor.php');
                         exit();
                     } else{//Incorrect idType
                         header('Location: /IngeniaLab/src/views/login.php?error=InvalidType');
