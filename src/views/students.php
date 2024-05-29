@@ -12,7 +12,7 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
 
-    <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css">
+    <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css"> 
     <link rel="stylesheet" href="/IngeniaLab/public/css/students.css">
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
@@ -27,6 +27,7 @@ error_reporting(E_ALL);
 
             <h1>Usuarios</h1>
             <button id="openModalAdd" class="add-button">Agregar Estudiante</button>
+            <button type="button" onclick="location.href='/IngeniaLab/src/views/register.php'">Registrar Administrador o Maestro</button>
             <?php require "../students/create-estudiante.php"; ?>
 
         </div>

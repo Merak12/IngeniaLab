@@ -1,23 +1,25 @@
-input[type=text] {
-  background-color: #D4DBEB;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  padding-left: 40px;
+body {
+  font-family: 'Arial', sans-serif;
 }
 
-input[type=password] {
-  background-color: #D4DBEB;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  padding-left: 40px;
+button {
+  background: #4c6ef5;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
 
-body{
-  background-color: white;
+input[type="password"], input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-.button1{
-  padding: 10px 20px; 
-  font-size: 16px; 
-  background-color: #FF3333; 
-  color: white;
+
+input[type="checkbox"] {
+  margin: 10px 0;
 }
