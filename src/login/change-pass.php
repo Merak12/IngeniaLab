@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $query->bindParam(':username', $username);
             $query->execute();
 
-            header('Location: /IngeniaLab/src/views/home.php');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
             exit();
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

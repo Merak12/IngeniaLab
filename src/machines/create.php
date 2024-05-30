@@ -17,7 +17,7 @@
                 <select name="tipo_maquina" id="tipo_maquina">
                     <option value="">Selecciona tipo de maquinaria</option>
                     <?php
-                        require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+                        require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
                         $pdo = Database::connect();
                         $query = 'SELECT * FROM Tipos_maquina';
                         foreach ($pdo->query($query) as $row) {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var formData = new FormData(form);
 
-        fetch('/IngeniaLab/src/machines/add_machine.php', {
+        fetch('/TC2005B_602_01/IngeniaLab/src/machines/add_machine.php', {
             method: 'POST',
             body: formData
         })

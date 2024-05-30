@@ -22,7 +22,7 @@
                 <select id="carrera" name="carrera" required>
                     <option value="">Selecciona carrera</option>
                     <?php
-                        require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+                        require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
                         $pdo = Database::connect();
                         $query = 'SELECT * FROM Carreras';

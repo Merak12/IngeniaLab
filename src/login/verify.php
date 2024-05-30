@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query->execute();
 
         if ($query->rowCount() > 0) {
-            header('Location: /IngeniaLab/src/views/change-pass.html');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/change-pass.html');
             exit();
         } else {
-            header('Location: /IngeniaLab/src/login/verify.php?error=Usernotfound');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/login/verify.php?error=Usernotfound');
             exit();
         }
     } catch (PDOException $e) {
@@ -27,6 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Database::disconnect();
     }
 
-    header('Location: /IngeniaLab/src/login/verify.php?error=InvalidAccess');
+    header('Location: /TC2005B_602_01/IngeniaLab/src/login/verify.php?error=InvalidAccess');
     exit();
 }

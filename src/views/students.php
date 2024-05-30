@@ -12,8 +12,8 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
 
-    <link rel="stylesheet" href="/IngeniaLab/public/css/styles.css"> 
-    <link rel="stylesheet" href="/IngeniaLab/public/css/students.css">
+    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/styles.css"> 
+    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/students.css">
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </head>
@@ -27,7 +27,7 @@ error_reporting(E_ALL);
 
             <h1>Usuarios</h1>
             <button id="openModalAdd" class="add-button">Agregar Estudiante</button>
-            <button type="button" onclick="location.href='/IngeniaLab/src/views/register.php'">Registrar Administrador o Maestro</button>
+            <button type="button" onclick="location.href='/TC2005B_602_01/IngeniaLab/src/views/register.php'">Registrar Administrador o Maestro</button>
             <?php require "../students/create-estudiante.php"; ?>
 
         </div>
@@ -47,7 +47,7 @@ error_reporting(E_ALL);
             </thead>
             <tbody>
                 <?php
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/IngeniaLab/config/database.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/TC2005B_602_01/IngeniaLab/config/database.php';
                 $pdo = Database::connect();
                 $sql = 'SELECT ID, nombre, carrera, correo FROM Alumnos';
                 $result = $pdo->query($sql);
@@ -74,8 +74,8 @@ error_reporting(E_ALL);
 
     <?php require "../students/edit.php"; ?>
 
-    <script src="/IngeniaLab/public/js/modal.js"></script>
-    <script src="/IngeniaLab/public/js/modal2.js"></script>
+    <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
+    <script src="/TC2005B_602_01/IngeniaLab/public/js/modal2.js"></script>
 
 </body>
 

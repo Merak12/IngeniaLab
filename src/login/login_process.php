@@ -2,7 +2,7 @@
 
     session_start();
 
-    require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -27,22 +27,22 @@
                     $_SESSION['correo'] = $user['correo'];
 
                     if($_SESSION['idType'] == 3){
-                        header('Location: /IngeniaLab/src/views/home.php');
+                        header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
                         exit();
                     } elseif($_SESSION['idType'] == 2){
-                        header('Location: /IngeniaLab/src/views/profesor/profesor.php');
+                        header('Location: /TC2005B_602_01/IngeniaLab/src/views/profesor/profesor.php');
                         exit();
                     } else{//Incorrect idType
-                        header('Location: /IngeniaLab/src/views/login.php?error=InvalidType');
+                        header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=InvalidType');
                         exit();                        
                     }
                 } else{
                     //Incorrect Password
-                    header('Location: /IngeniaLab/src/views/login.php?error=IncorrectPassword');
+                    header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=IncorrectPassword');
                     exit();
                 }
             }else{//User not found
-                header('Location: /IngeniaLab/src/views/login.php?error=Usernotfound');
+                header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=Usernotfound');
                 exit();
             }
         } catch(PDOException $e){
@@ -54,7 +54,7 @@
 
     } else{
         //PHP file unable to access
-        header('Location: /IngeniaLab/index.php?error=InvalidAccess');
+        header('Location: /TC2005B_602_01/IngeniaLab/index.php?error=InvalidAccess');
         exit();
     }
 ?>

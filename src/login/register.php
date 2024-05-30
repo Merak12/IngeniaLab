@@ -48,7 +48,7 @@ function insertaradmin($id, $name, $email, $password){
             $query->bindParam(':hashed_password', $hashed_password);
             $query->execute();
 
-            header('Location: /IngeniaLab/src/views/home.php');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
             exit();
         }
     } catch (PDOException $e) {
@@ -80,7 +80,7 @@ function insertarmaestro($id, $name, $email, $password){
             $query->bindParam(':hashed_password', $hashed_password);
             $query->execute();
 
-            header('Location: /IngeniaLab/src/views/home.php');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
             exit();
         }
     } catch (PDOException $e) {

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     Database::disconnect();
-    header('Location: /IngeniaLab/src/students.php');
+    header('Location: /TC2005B_602_01/IngeniaLab/src/students.php');
     exit;
 }
 ?>

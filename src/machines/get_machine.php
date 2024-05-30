@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);

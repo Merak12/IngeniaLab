@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
 $id = $_POST['id'];
 $newState = $_POST['state']; // '1' para encender, '0' para apagar
@@ -16,6 +16,6 @@ $query->execute([$newState, $id]);
 
 Database::disconnect();
 
-header('Location: /IngeniaLab/src/views/home.php'); // Ajusta esta ruta
+header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php'); // Ajusta esta ruta
 exit();
 ?>

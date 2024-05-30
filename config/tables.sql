@@ -74,7 +74,7 @@ FOREIGN KEY (carrera) REFERENCES Carreras(ID) ON DELETE RESTRICT
 
 );
 
-INSERT INTO Alumnos VALUE ("Humberto Pérez Galindo", "A01732526", "A01732526@tec.mx", "ITC");
+INSERT INTO Alumnos VALUE ("A01732526", "Humberto Pérez Galindo", "A01732526@tec.mx", "ITC");
 
 CREATE TABLE Tipos_usuario (
 
