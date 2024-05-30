@@ -13,6 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-header("Location: /IngeniaLab/src/views/machines.php");
+header("Location: /IngeniaLab/src/views/home.php");
 exit;
 ?>

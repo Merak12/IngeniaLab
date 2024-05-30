@@ -1,4 +1,5 @@
 <div id="addMachineModal" class="modal">
+
     <div class="modalAdd-content">
         <span class="close" data-modal="addMachineModal">&times;</span>
         <h2>Agregar nueva máquina</h2>
@@ -33,6 +34,7 @@
         </form>
         <div id="message"></div>
     </div>
+    
 </div>
 
 <script>

@@ -1,3 +1,38 @@
+<div id="machineDetailsModal" class="modal">
+    <div class="modalDetails-content">
+        <span class="close" data-modal="machineDetailsModal">&times;</span>
+        <h2>Detalles de la Máquina</h2>
+        <div id="machineDetails">
+            
+        </div>
+        <div class="form-buttons">
+            <button type="button" class="cancel-btn" data-modal="machineDetailsModal">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showDetailsModal(machineId) {
+        
+            // Hacer una petición AJAX para obtener los detalles de la máquina
+            $.ajax({
+                url: '../machines/details.php', // Ajusta la ruta al archivo PHP que devolverá los detalles de la máquina
+                type: 'GET',
+                data: { id: machineId },
+                success: function(response) {
+                    // Poner la respuesta en el contenido del modal
+                    $('#machineDetails').html(response);
+                    // Mostrar el modal
+                    $('#machineDetailsModal').css('display', 'block');
+                },
+                error: function(error) {
+                    console.error('Error obteniendo los detalles de la máquina:', error);
+                }
+            });
+        }
+
+</script>
+
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/IngeniaLab/config/database.php';
 
