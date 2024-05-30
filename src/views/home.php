@@ -22,9 +22,14 @@
             <button class="open-modal-btn add-button" data-modal="addMachineModal">Añadir nueva maquina</button>
         </div>
 
-        <div>
-            <button>boton</button>
-            <button>boton</button>
+        <div class='button-container'>
+            <form method='POST' action="../machines/turnOnAll.php">
+                <button type="submit" class="power-on-button"> <i class='fas fa-power-off'></i> Encender Todo</button>
+            </form>
+            <form method='POST' action="../machines/turnOffAll.php">
+                <button type="submit" class="power-off-button"> <i class='fas fa-power-off'></i> Apagar Todo</button>
+            </form>
+
         </div>
 
         <div class="search-bar">
@@ -60,15 +65,22 @@
 
                         echo "<div class='button-container'>";
 
+                            echo "<form method='POST' action='../machines/toggleMachineState.php'>";
+
                             if ($row['estado'] == 0) {
-                                echo "<button type='button' class='power-on-button' onclick='toggleMachineState(" . $row['ID'] . ", 1)'><i class='fas fa-power-off'></i> Encender</button>";
+                                echo "<button type='submit' class='power-on-button' data-id='" . ($row['ID']) . "')'><i class='fas fa-power-off'></i> Encender</button>";
                             }
                             else {
-                                echo "<button type='button' class='power-off-button' onclick='toggleMachineState(" . $row['ID'] . ", 0)'><i class='fas fa-power-off'></i> Apagar</button>";
-                            }  
+                                echo "<button type='submit' class='power-off-button' data-id='" . ($row['ID']) . "')'><i class='fas fa-power-off'></i> Apagar</button>";
+                            }
+
+                                echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['ID']) . "'>";
+                                echo "<input type='hidden' name='estado_actual' value='" . htmlspecialchars($row['estado']) . "'>";
+
+                            echo "</form>";
                             
                             echo "<button class='edit-button' onclick='event.preventDefault(); showDetailsModal(" . $row['ID'] . ");'><i class='fas fa-info-circle'></i> Detalles</button>";
-                            echo "<button class='details-button' onclick='event.preventDefault(); editModal(" . $row['ID'] . ");'>Editar</button>";
+                            echo "<button class='details-button' onclick='event.preventDefault(); editModal(" . $row['ID'] . ");'> <i class='far fa-edit'></i> Editar</button>";
                             
                             echo "<form method='POST' action='../machines/delete.php' onsubmit='return confirm(\"¿Estás seguro de que deseas eliminar esta máquina?\");'>";
                                 echo "<button type='submit' class='delete-button' data-id='" . ($row['ID']) . "'><i class='fas fa-trash'></i> Eliminar</button>";
@@ -95,25 +107,6 @@
     <?php include '../machines/edit.php'; ?>
 
     <script src="../../public/js/modal.js"></script>
-    
-    <script>
-function toggleMachineState(machineId, newState) {
-    $.ajax({
-        url: '../machines/toggleMachineState.php', // Asegúrate de que esta URL sea correcta
-        type: 'POST',
-        data: { id: machineId, state: newState },
-        success: function(response) {
-            alert('Estado de la máquina actualizado.');
-            // Opcional: actualizar la interfaz de usuario aquí, por ejemplo, recargar parte de la tabla
-        },
-        error: function() {
-            alert('Error al cambiar el estado de la máquina.');
-        }
-    });
-}
-</script>
-
-
 
 </body>
 </html>

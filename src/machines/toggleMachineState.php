@@ -1,20 +1,22 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
-$id = $_POST['id'];
-$newState = $_POST['state']; // '1' para encender, '0' para apagar
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$pdo = Database::connect();
-$query = $pdo->prepare("UPDATE Maquinas SET estado = ? WHERE ID = ?");
-$query->execute([$newState, $id]);
+    $id = $_POST['id'];
+    $curState = $_POST['estado_actual']; // '1' para encender, '0' para apagar
 
-// if($query->rowCount() > 0) {
-//     echo "Estado actualizado"; // Respuesta simple de confirmación
-// } else {
-//     echo "No se pudo actualizar el estado";
-// }
+    $pdo = Database::connect();
+    $query = $pdo->prepare("UPDATE Maquinas SET estado = ? WHERE ID = ?");
 
-Database::disconnect();
+    if ($curState == 1)
+        $query->execute([0, $id]);
+    else
+        $query->execute([1, $id]);
+
+    Database::disconnect();
+
+}
 
 header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php'); // Ajusta esta ruta
 exit();
