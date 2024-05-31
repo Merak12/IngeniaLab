@@ -9,7 +9,7 @@ body {
 }
 
 .main-content {
-margin-left: 250px;
+margin-left: 50px;
 padding: 20px;
 width: calc(100% - 250px);
 }
@@ -304,4 +304,13 @@ h2 {
     max-width: 600px;
     border-radius: 10px;
     position: relative;
+}
+
+/* Agrega esto a tus estilos existentes */
+.sidebar.expanded + #main-content {
+    margin-left: 150px; /* Ajusta según el ancho de tu barra de navegación expandida */
+}
+
+#main-content {
+    transition: margin-left 0.5s; /* Transición suave */
 }

@@ -9,17 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['numSerie']) && !empty
     $numSerie = $_POST['numSerie'];
     $nombre = $_POST['nombre'];
     $tipoM = $_POST['tipo_maquina'];
-    $fechaR = "2024-03-20"; // Fecha actual.
     $tiempoUsoTotal = 0.0; // Tiempo de uso total inicial.
     $estado = 0; // Estado inicial es 0.
     $func = 1;
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO Maquinas (numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Maquinas (numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUES(?, ?, ?, CURDATE(), 0.0, 0, 1)";
     $q = $pdo->prepare($sql);
 
     try {
-        $q->execute(array($numSerie, $nombre, $tipoM, $fechaR, $tiempoUsoTotal, $estado, $func));
+        $q->execute(array($numSerie, $nombre, $tipoM));
         $response['success'] = true;
         $response['message'] = "Máquina agregada correctamente.";
     } catch (Exception $e) {

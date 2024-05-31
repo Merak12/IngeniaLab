@@ -2,12 +2,11 @@
 
     require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
-    $error_message = '';
-    $success_message = '';
-
-    $pdo = Database::connect();
+    $response = array();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $pdo = Database::connect();
 
         $ID = $_POST['matricula'];
         $name = $_POST['name'];
@@ -24,22 +23,29 @@
             $user_exists = $stmt_check->fetchColumn();
 
             if ($user_exists > 0) {
-                echo "El usuario con esa matrícula o correo ya está registrado.";
+                $response['success'] = false;
+                $response['message'] = "El usuario con esa matrícula o correo ya está registrado.";
             } else {
                 
                 $sql_insert = "INSERT INTO Alumnos (ID, nombre, correo, carrera) VALUES (?, ?, ?, ?)";
                 $stmt_insert = $pdo->prepare($sql_insert);
 
                 if ($stmt_insert->execute([$ID, $name, $correo, $carrera])) {
-                    echo "Usuario registrado exitosamente.";
+                    $response['success'] = true;
+                    $response['message'] = "Usuario registrado exitosamente.";
                 } else {
-                    echo "Error al registrar el usuario.";
+                    $response['success'] = false;
+                    $response['message'] = "Error al registrar el usuario.";
                 }
                 
             }
 
             Database::disconnect();
         } else {
-            echo "Todos los campos son obligatorios.";
+            $response['success'] = false;
+            $response['message'] = "Todos los campos son obligatorios.";
         }
     }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);

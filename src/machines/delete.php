@@ -5,10 +5,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = intval($_POST['id']);
 
     if ($id > 0) {
+
         $pdo = Database::connect();
+
         $sql = "DELETE FROM Maquinas WHERE ID = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
+        
         Database::disconnect();
     }
 }

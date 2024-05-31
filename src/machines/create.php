@@ -1,3 +1,14 @@
+<?php
+
+    session_start();
+
+    if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
+        header("Location: /TC2005B_602_01/IngeniaLab/src/views/login.php");
+        exit();
+    }
+
+?>
+
 <div id="addMachineModal" class="modal">
 
     <div class="modalAdd-content">

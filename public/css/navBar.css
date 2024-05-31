@@ -12,7 +12,7 @@ body, html {
     font-family: 'Open Sans', sans-serif;
 }
 
-.navbar {
+.sidebar {
     width: 50px;
     height: 100vh;
     position: fixed;
@@ -23,11 +23,7 @@ body, html {
     overflow: hidden;
 }
 
-.navbar:hover {
-    width: 200px;
-}
-
-.navbar-nav {
+.sidebar-nav {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -40,6 +36,10 @@ body, html {
 
 .nav-item {
     width: 100%;
+}
+
+.nav-item:last-child {
+    margin-top: auto;
 }
 
 .nav-link {
@@ -63,8 +63,26 @@ body, html {
     margin-left: 1rem;
 }
 
-.navbar:hover .link-text {
+.sidebar:hover .link-text {
     display: block;
+}
+
+.sidebar:not(:hover) .nav-link {
+    justify-content: center; /* Centra horizontalmente solo cuando la barra está cerrada */
+}
+
+/* Estilo para el texto del enlace que se oculta cuando está cerrada */
+.sidebar:not(:hover) .nav-link .link-text {
+    display: none;
+}
+
+/* Estilos originales para cuando la barra está abierta (hover) */
+.sidebar:hover .nav-link {
+    justify-content: flex-start; /* Restaura el alineamiento a la izquierda cuando la barra está abierta */
+}
+
+.sidebar:hover .link-text {
+    display: block; /* Muestra el texto cuando la barra está expandida */
 }
 
 .content {
@@ -73,6 +91,26 @@ body, html {
     padding: 1rem;
 }
 
-.navbar:hover + .content {
-    margin-left: 200px;
+.toggle-button {
+    position: absolute;
+    top: 50%;  /* Centra el botón verticalmente */
+    right: -25px; /* Mueve el botón hacia fuera de la barra */
+    transform: translateY(-50%); /* Asegura que el botón esté centrado */
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%; /* Hace que el botón sea circular */
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.sidebar.expanded .toggle-button {
+    right: -25px; /* Asegura que el botón permanezca en la misma posición */
+    content: "❮"; /* Cambia el icono o texto del botón */
 }

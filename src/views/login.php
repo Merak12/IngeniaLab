@@ -18,11 +18,11 @@
         </div>
         <div class="login">
             <h2>Log in</h2>
-            <form action="/IngeniaLab/src/login/login_process.php" method="POST">
+            <form action="../login/login_process.php" method="POST">
                 <input type="text" id="username" name="username" placeholder="Usuario" required>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Log in</button>
-                <a href="/IngeniaLab/src/views/verify-email.html">¿Olvidó su contraseña?</a>
+                <a href="verify-email.html">¿Olvidó su contraseña?</a>
             </form>
         </div>
     </div>

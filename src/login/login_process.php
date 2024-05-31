@@ -4,7 +4,7 @@
 
     require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -18,17 +18,19 @@
             
             $query->execute();
 
-            if($query->rowCount() > 0){
+            if($query->rowCount() > 0) {
+
                 $user = $query->fetch(PDO::FETCH_ASSOC);
 
                 if(password_verify($password, $user['clave'])){
 
                     $_SESSION['idType'] = $user['idType'];
-                    $_SESSION['correo'] = $user['correo'];
 
-                    if($_SESSION['idType'] == 3){
+                    if($_SESSION['idType'] == 3) {
+                        
                         header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
                         exit();
+
                     } elseif($_SESSION['idType'] == 2){
                         header('Location: /TC2005B_602_01/IngeniaLab/src/views/profesor/profesor.php');
                         exit();
@@ -41,7 +43,8 @@
                     header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=IncorrectPassword');
                     exit();
                 }
-            }else{//User not found
+            }
+            else {//User not found
                 header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=Usernotfound');
                 exit();
             }

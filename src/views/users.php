@@ -1,7 +1,12 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+    session_start();
+
+    if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
+        header("Location: login.php");
+        exit();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +17,8 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
 
-    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/styles.css"> 
-    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/students.css">
+    <link rel="stylesheet" href="../../public/css/styles.css"> 
+    <link rel="stylesheet" href="../../public/css/users.css">
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </head>
@@ -26,9 +31,9 @@ error_reporting(E_ALL);
         <div class="header">
 
             <h1>Usuarios</h1>
-            <button id="openModalAdd" class="add-button">Agregar Estudiante</button>
+            <button class="open-modal-btn add-button" data-modal="addStudentModal">Agregar Estudiante</button>
             <button type="button" onclick="location.href='/TC2005B_602_01/IngeniaLab/src/views/register.php'">Registrar Administrador o Maestro</button>
-            <?php require "../students/create-estudiante.php"; ?>
+            
 
         </div>
 
@@ -58,8 +63,13 @@ error_reporting(E_ALL);
                         echo "<td>" . htmlspecialchars($row['correo']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['carrera']) . "</td>";
                         echo "<td>";
+                        echo "<div class='button-container'>";
                         echo "<button type='button' class='edit-button' onclick='openEditModal(" . json_encode($row['ID']) . ");'>Editar</button>";
-                        echo "<button type='button' class='delete-button' data-id='" . htmlspecialchars($row['ID']) . "'>Eliminar</button>";
+                        echo "<form method='POST' action='../users/delete-student.php' onsubmit='return confirm(\"¿Estás seguro de que deseas eliminar esta máquina?\");'>";
+                        echo "<button type='submit' class='delete-button' data-id='" . ($row['ID']) . "'><i class='fas fa-trash'></i> Eliminar</button>";
+                        echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['ID']) . "'>";
+                        echo "</form>";
+                        echo "</div>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -72,10 +82,10 @@ error_reporting(E_ALL);
         </table>
     </div>
 
-    <?php require "../students/edit.php"; ?>
+    <?php require "../users/create-estudiante.php"; ?>
+    <?php require "../users/edit.php"; ?>
 
     <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
-    <script src="/TC2005B_602_01/IngeniaLab/public/js/modal2.js"></script>
 
 </body>
 
