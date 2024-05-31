@@ -22,7 +22,7 @@
                 <input type="text" id="username" name="username" placeholder="Usuario" required>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Log in</button>
-                <a href="/IngeniaLab/src/views/verify-email.html">¿Olvidó su contraseña?</a>
+                <a href="../../src/views/verify-email.html">¿Olvidó su contraseña?</a>
             </form>
         </div>
     </div>
