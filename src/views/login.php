@@ -18,7 +18,7 @@
         </div>
         <div class="login">
             <h2>Log in</h2>
-            <form action="/IngeniaLab/src/login/login_process.php" method="POST">
+            <form action="/TC2005B_602_01/IngeniaLab/src/login/login_process.php" method="POST">
                 <input type="text" id="username" name="username" placeholder="Usuario" required>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Log in</button>
