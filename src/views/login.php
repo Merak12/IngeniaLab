@@ -18,11 +18,19 @@
         </div>
         <div class="login">
             <h2>Log in</h2>
+<<<<<<< HEAD
             <form action="../login/login_process.php" method="POST">
                 <input type="text" id="username" name="username" placeholder="Usuario" required>
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Log in</button>
                 <a href="verify-email.html">¿Olvidó su contraseña?</a>
+=======
+            <form action="/TC2005B_602_01/IngeniaLab/src/login/login_process.php" method="POST">
+                <input type="text" id="username" name="username" placeholder="Usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Log in</button>
+                <a href="../../src/views/verify-email.html">¿Olvidó su contraseña?</a>
+>>>>>>> 65625a6a2dac8cf89cc1aa06d45534c44f3b8f07
             </form>
         </div>
     </div>
