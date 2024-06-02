@@ -1,17 +1,20 @@
 <?php
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
+$pdo = Database::connect();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $userId = $_POST['id'];
+$idStudent = isset($_GET['ID']) ? $_GET['ID'] : null;
 
-    $pdo = Database::connect();
-
+if ($idStudent) {
     $sql = "DELETE FROM Alumnos WHERE ID = ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$userId]);
-
-    Database::disconnect();
+    if ($stmt->execute([$idStudent])) {
+        echo "Estudiante eliminado correctamente.";
+    } else {
+        echo "Error al eliminar estudiante: " . implode(", ", $stmt->errorInfo());
+    }
+} else {
+    echo "ID no proporcionado o inválido.";
 }
 
-header("Location: /TC2005B_602_01/IngeniaLab/src/views/users.php");
-exit;
+Database::disconnect();

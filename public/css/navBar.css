@@ -43,13 +43,16 @@ body, html {
 }
 
 .nav-link {
+
     display: flex;
-    align-items: center;
+    justify-content: center;
     height: 5rem;
     color: var(--text-primary);
     text-decoration: none;
-    filter: grayscale(100%) opacity(0.7); 
+    filter: grayscale(100%) opacity(0.7);
     transition: filter var(--transition-speed);
+    padding: center;
+
 }
 
 .nav-link:hover {
@@ -63,26 +66,12 @@ body, html {
     margin-left: 1rem;
 }
 
-.sidebar:hover .link-text {
+.sidebar.expanded .link-text {
     display: block;
 }
 
-.sidebar:not(:hover) .nav-link {
-    justify-content: center; /* Centra horizontalmente solo cuando la barra está cerrada */
-}
-
-/* Estilo para el texto del enlace que se oculta cuando está cerrada */
-.sidebar:not(:hover) .nav-link .link-text {
-    display: none;
-}
-
-/* Estilos originales para cuando la barra está abierta (hover) */
-.sidebar:hover .nav-link {
-    justify-content: flex-start; /* Restaura el alineamiento a la izquierda cuando la barra está abierta */
-}
-
-.sidebar:hover .link-text {
-    display: block; /* Muestra el texto cuando la barra está expandida */
+.sidebar.expanded .nav-link {
+    justify-content: flex-start;
 }
 
 .content {
@@ -92,10 +81,11 @@ body, html {
 }
 
 .toggle-button {
+
     position: absolute;
-    top: 50%;  /* Centra el botón verticalmente */
-    right: -25px; /* Mueve el botón hacia fuera de la barra */
-    transform: translateY(-50%); /* Asegura que el botón esté centrado */
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
     width: 50px;
     height: 50px;
     border: none;
@@ -103,7 +93,8 @@ body, html {
     color: #333;
     cursor: pointer;
     font-size: 24px;
-    border-radius: 50%; /* Hace que el botón sea circular */
+    border-radius: 50%;
+    
 }
 
 .sidebar.expanded {
@@ -111,6 +102,6 @@ body, html {
 }
 
 .sidebar.expanded .toggle-button {
-    right: -25px; /* Asegura que el botón permanezca en la misma posición */
-    content: "❮"; /* Cambia el icono o texto del botón */
+    right: -25px;
+    content: "❮";
 }

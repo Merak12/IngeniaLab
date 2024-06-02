@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="form-buttons">
-                <button type="submit" class="btn-accept">Aceptar</button>
+                <button type="submit" class="btn-accept" onclick='reload()'>Aceptar</button>
                 <button type="button" class="cancel-btn" data-modal="addMachineModal">Cerrar</button>
             </div>
         </form>
@@ -49,17 +49,19 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var modal = document.getElementById('addMachineModal');
-    var closeModalBtns = document.querySelectorAll('.close, .cancel-btn');
-    var form = document.getElementById('addMachineForm');
-    var messageDiv = document.getElementById('message');
+    document.addEventListener("DOMContentLoaded", function() {
 
-    closeModalBtns.forEach(function(btn) {
-        btn.onclick = function() {
-            modal.style.display = 'none';
-            window.location.reload();  // Recargar la página al cerrar la ventana modal
-        }
+        var modal = document.getElementById('addMachineModal');
+        var closeModalBtns = document.querySelectorAll('.close, .cancel-btn');
+        var form = document.getElementById('addMachineForm');
+        var messageDiv = document.getElementById('message');
+
+        closeModalBtns.forEach(function(btn) {
+            btn.onclick = function() {
+                modal.style.display = 'none';
+                window.location.reload();  // Recargar la página al cerrar la ventana modal
+            }
+
     });
 
     form.onsubmit = function(event) {
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 form.reset();
                 setTimeout(function() {
                     modal.style.display = 'none';
-                    window.location.reload();  // Recargar la página después de mostrar el mensaje de éxito
+                    reload();  // Recargar la página después de mostrar el mensaje de éxito
                 }, 1500);  // Espera 1.5 segundos antes de cerrar la ventana modal y recargar la página
             } else {
                 messageDiv.innerHTML = '<p style="color:red;">' + data.message + '</p>';

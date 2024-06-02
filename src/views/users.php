@@ -1,47 +1,38 @@
 <?php
-
     session_start();
 
     if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
         header("Location: login.php");
         exit();
     }
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumnos</title>
-
+    <title>Usuarios</title>
     <link rel="stylesheet" href="../../public/css/styles.css"> 
     <link rel="stylesheet" href="../../public/css/users.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 </head>
-
 <body>
-
     <?php include '../common/sideBar.html' ?>
 
     <div class="main-content">
         <div class="header">
-
             <h1>Usuarios</h1>
             <button class="open-modal-btn add-button" data-modal="addStudentModal">Agregar Estudiante</button>
             <button type="button" onclick="location.href='/TC2005B_602_01/IngeniaLab/src/views/register.php'">Registrar Administrador o Maestro</button>
-            
-
         </div>
 
         <div class="search-bar">
-            <input type="text" placeholder="Buscar por nombre, correo, etc.">
-            <button class="search-button">Buscar</button>
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, correo, etc.">
         </div>
-        <table class="user-table">
+
+        <table class="user-table" id="user-table">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -51,42 +42,73 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/TC2005B_602_01/IngeniaLab/config/database.php';
-                $pdo = Database::connect();
-                $sql = 'SELECT ID, nombre, carrera, correo FROM Alumnos';
-                $result = $pdo->query($sql);
-                if ($result->rowCount() > 0) {
-                    foreach ($result as $row) {
-                        echo "<tr data-id='" . htmlspecialchars($row['ID']) . "'>";
-                        echo "<td>" . htmlspecialchars($row['nombre']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['correo']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['carrera']) . "</td>";
-                        echo "<td>";
-                        echo "<div class='button-container'>";
-                        echo "<button type='button' class='edit-button' onclick='openEditModal(" . json_encode($row['ID']) . ");'>Editar</button>";
-                        echo "<form method='POST' action='../users/delete-student.php' onsubmit='return confirm(\"¿Estás seguro de que deseas eliminar esta máquina?\");'>";
-                        echo "<button type='submit' class='delete-button' data-id='" . ($row['ID']) . "'><i class='fas fa-trash'></i> Eliminar</button>";
-                        echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['ID']) . "'>";
-                        echo "</form>";
-                        echo "</div>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='4'>No hay usuarios para mostrar.</td></tr>";
-                }
-                Database::disconnect();
-                ?>
+                <!-- <tr id='no-results' style="display: none;">
+                    <td colspan="4">No se encontraron resultados</td>
+                </tr> -->
             </tbody>
         </table>
     </div>
 
-    <?php require "../users/create-estudiante.php"; ?>
+    <?php require "../users/create-student.php"; ?>
     <?php require "../users/edit.php"; ?>
+    <?php require "../users/confirm-delete-student.php"; ?>
 
     <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
 
-</body>
+    <script>
+        $(document).ready(function() {
+            $('tbody').load('/TC2005B_602_01/IngeniaLab/src/users/students.php', function() {
+                updateNoResultsMessage();
+            });
+        });
 
+        function searchTable() {
+
+            var input, filter, table, tr, td, i, j, txtValue, visible;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("user-table");
+            tr = table.getElementsByTagName("tr");
+            var tbody = table.querySelector("tbody");
+            var noResultFound = true;
+
+            // Remover fila de "No se encontraron resultados" si existe
+            var noResultsRow = document.querySelector(".no-results");
+            if (noResultsRow) {
+                noResultsRow.remove();
+            }
+
+            // Ocultar todas las filas de datos y buscar coincidencias
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                visible = false;
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            visible = true;
+                            break;
+                        }
+                    }
+                }
+                if (visible) {
+                    tr[i].style.display = "";
+                    noResultFound = false;
+                }
+            }
+
+            // Si no se encontraron resultados, agregar fila de "No se encontraron resultados"
+            if (noResultFound) {
+                var newRow = document.createElement("tr");
+                newRow.className = "no-results";
+                newRow.innerHTML = "<td colspan='4'>No se encontraron resultados</td>";
+                tbody.appendChild(newRow);
+            }
+
+        }
+
+    </script>
+
+</body>
 </html>

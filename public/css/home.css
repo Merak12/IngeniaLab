@@ -9,26 +9,30 @@ body {
 }
 
 .main-content {
-margin-left: 50px;
-padding: 20px;
-width: calc(100% - 250px);
+
+    margin-left: 50px;
+    padding: 20px;
+    width: calc(100% - 250px);
+
 }
 
 .header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .add-button {
-background: #4c6ef5;
-color: #fff;
-border: none;
-padding: 10px 20px;
-cursor: pointer;
-border-radius: 5px;
-transition: background 0.3s;
+
+    background: #4c6ef5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+
 }
 
 .add-button:hover {
@@ -106,25 +110,47 @@ transition: background 0.3s;
 }
 
 .power-on-button {
-    background: #2f7249;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-    transition: background 0.3s;
+
+    font-size: 12px; /* Tamaño de la letra */
+    font-family: Arial, sans-serif; /* Tipo de letra */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    outline: none; /* Remover el borde de enfoque */
+
+    width: 150px; /* Ancho fijo */
+    height: 50px; /* Altura fija */
+    display: inline-block; /* Asegura que se aplican las dimensiones */
+    box-sizing: border-box; /* Incluye el padding y border dentro de la dimensión especificada */
+
+
+    color: white;
+    background: green;
+
 }
 
 .power-off-button {
-    background: #ff0800;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-    transition: background 0.3s;
+
+    font-size: 12px; /* Tamaño de la letra */
+    font-family: Arial, sans-serif; /* Tipo de letra */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    outline: none; /* Remover el borde de enfoque */
+
+    width: 150px; /* Ancho fijo */
+    height: 50px; /* Altura fija */
+    display: inline-block; /* Asegura que se aplican las dimensiones */
+    box-sizing: border-box; /* Incluye el padding y border dentro de la dimensión especificada */
+
+
+    color: white;
+    background: red;
+
 }
 
 .edit-button:hover, .delete-button:hover {
@@ -309,8 +335,4 @@ h2 {
 /* Agrega esto a tus estilos existentes */
 .sidebar.expanded + #main-content {
     margin-left: 150px; /* Ajusta según el ancho de tu barra de navegación expandida */
-}
-
-#main-content {
-    transition: margin-left 0.5s; /* Transición suave */
 }

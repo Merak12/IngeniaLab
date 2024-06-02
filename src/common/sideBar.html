@@ -1,8 +1,8 @@
 <head>
+    
     <link rel="stylesheet" href="../../public/css/navBar.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     
-
 </head>
 
 <div id="sidebar" class="sidebar">
@@ -42,7 +42,7 @@
 
     document.getElementById('toggleButton').addEventListener('click', function() {
         var sidebar = document.getElementById('sidebar');
-        var content = document.getElementById('maiContent');
+        var content = document.getElementById('main-content');
         sidebar.classList.toggle('expanded');
         content.classList.toggle('expanded');
         this.innerHTML = sidebar.classList.contains('expanded') ? '&#10094;' : '&#10095;';

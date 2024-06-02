@@ -10,79 +10,188 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="es">
 
-    <meta charset="utf-8">
-    <title>Admin Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/styles.css">
-    <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/home.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <head>
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <meta charset="utf-8">
+        <title>Admin Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/styles.css">
+        <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/home.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-</head>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
-<body>
+        <style>
 
-    <?php include '../common/sideBar.html'; ?>
+            #main-content {
+                margin-left: 100px;
+                transition: margin-left 0.5s;
+                padding: 20px;
+            }
 
-    <div class="main-content" id="mainContent">
+            #main-content.expanded {
+                margin-left: 200px;
+            }
+        </style>
 
-        <div class="header">
-            <h1>Administrar Equipos</h1>
-            <button class="open-modal-btn add-button" data-modal="addMachineModal">Añadir nueva maquina</button>
+    </head>
+
+    <body>
+
+        <?php include '../common/sideBar.html'; ?>
+
+        <div class="main-content" id="main-content">
+
+            <div class="header">
+                <h1>Administrar Equipos</h1>
+                <button class="open-modal-btn add-button" data-modal="addMachineModal">Añadir nueva maquina</button>
+            </div>
+
+            <div class='button-container'>
+
+                <button onclick='changeStatusAll(1)' class='power-on-button'><i class='fas fa-power-off'></i> Encender Todo</button>
+                <button onclick='changeStatusAll(0)' class='power-off-button'><i class='fas fa-power-off'></i> Apagar Todo</button>
+
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, numero de serie, estado, etc.">
+            </div>
+
+            <table class="user-table">
+
+                <thead>
+                    <tr>
+                        <th>Nombre Máquina</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+
         </div>
 
-        <div class='button-container'>
+        <?php include '../machines/create.php'; ?>
+        <?php include '../machines/details.php'; ?>
+        <?php include '../machines/edit.php'; ?>
 
-            <form method='POST' action="../machines/turnOnAll.php">
-                <button type="submit" class="power-on-button"> <i class='fas fa-power-off'></i> Encender Todo</button>
-            </form>
+        <script src="../../public/js/modal.js"></script>
 
-            <form method='POST' action="../machines/turnOffAll.php">
-                <button type="submit" class="power-off-button"> <i class='fas fa-power-off'></i> Apagar Todo</button>
-            </form>
+        <script>
 
-        </div>
+            function changeStatusAll(newStatus) {
+                $.get("../machines/change-status-all.php", {newStatus: newStatus}, function(data) {
 
-        <div class="search-bar">
-            <input type="text" placeholder="Buscar por nombre, correo, etc.">
-            <button class="search-button">Buscar</button>
-        </div>
+                    reload();
 
-        <table class="user-table">
+                }).fail(function() {
+                    alert('Error al cambiar el estado de todas las máquinas');
+                });
+            }
 
-            <thead>
-                <tr>
-                    <th>Nombre Máquina</th>
-                    <th>Estado</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
+            function changeStatus(idMaquina) {
 
-            <tbody>
+                $.get("../machines/change-status.php", { ID: idMaquina }, function(data) {
 
+                    var boton = $('#boton' + idMaquina);
+                    var stausIcon = $('#statusIcon' + idMaquina);
+                    var nuevoEstado = data.trim() === "1";
+                    var nuevoTexto = nuevoEstado ? "Apagar" : "Encender";
+                    var nuevaClase = nuevoEstado ? 'power-off-button' : 'power-on-button';
+                    var nuevoIcono = nuevoEstado ? "<i class='far fa-lightbulb'></i>" : "<i class='fas fa-lightbulb'></i>";
+                    var nuevoStatus  = nuevoEstado ? " Encendido" : " Apagado  ";
+
+                    stausIcon.html(nuevoIcono + nuevoStatus);
+                    boton.html("<i class='fas fa-power-off'></i> " + nuevoTexto);
+                    boton.removeClass('power-on-button power-off-button').addClass(nuevaClase);
+
+                    $(document).ready(function() {
+                        $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
+                    });
+
+                }).fail(function() {
+                    alert('Error al cambiar el estado de la máquina');
+                });
+            }
+
+            function deleteMachine(idMaquina) {
+
+                $.get("../machines/delete.php", { ID: idMaquina }, function(data) {
+
+                    reload();
+
+                }).fail(function() {
+                    alert('Error al eliminar maquina');
+                }); 
+
+            }
+
+            function reload() {
+                    $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
             
+            }
 
-            </tbody>
+            function searchTable() {
 
-        </table>
+                var input, filter, table, tr, td, i, j, txtValue, visible;
+                input = document.getElementById("searchInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("user-table");
+                tr = table.getElementsByTagName("tr");
+                var tbody = table.querySelector("tbody");
+                var noResultFound = true;
 
-    </div>
+                // Remover fila de "No se encontraron resultados" si existe
+                var noResultsRow = document.querySelector(".no-results");
+                if (noResultsRow) {
+                    noResultsRow.remove();
+                }
 
-    <?php include '../machines/create.php'; ?>
-    <?php include '../machines/details.php'; ?>
-    <?php include '../machines/edit.php'; ?>
+                // Ocultar todas las filas de datos y buscar coincidencias
+                for (i = 1; i < tr.length; i++) {
+                    tr[i].style.display = "none";
+                    td = tr[i].getElementsByTagName("td");
+                    visible = false;
+                    for (j = 0; j < td.length; j++) {
+                        if (td[j]) {
+                            txtValue = td[j].textContent || td[j].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                visible = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (visible) {
+                        tr[i].style.display = "";
+                        noResultFound = false;
+                    }
+                }
 
-    <script src="../../public/js/modal.js"></script>
+                // Si no se encontraron resultados, agregar fila de "No se encontraron resultados"
+                if (noResultFound) {
+                    var newRow = document.createElement("tr");
+                    newRow.className = "no-results";
+                    newRow.innerHTML = "<td colspan='4'>No se encontraron resultados</td>";
+                    tbody.appendChild(newRow);
+                }
 
-    <script>
-		$(document).ready(function() {
-			$('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/showListMachine.php');
-		});
-	</script>
+                }
 
-</body>
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
+            });
+        </script>
+
+    </body>
+
 </html>
