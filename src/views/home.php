@@ -14,13 +14,17 @@
 
     <head>
 
-        <meta charset="utf-8">
         <title>Admin Home</title>
+
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        
         <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/styles.css">
         <link rel="stylesheet" href="/TC2005B_602_01/IngeniaLab/public/css/home.css">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
         <style>
@@ -34,6 +38,7 @@
             #main-content.expanded {
                 margin-left: 200px;
             }
+
         </style>
 
     </head>
@@ -60,21 +65,7 @@
                 <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, numero de serie, estado, etc.">
             </div>
 
-            <table class="user-table">
-
-                <thead>
-                    <tr>
-                        <th>Nombre Máquina</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                </tbody>
-
-            </table>
+            <div id="machines-table"></div>
 
         </div>
 
@@ -86,56 +77,36 @@
 
         <script>
 
+            $(document).ready(function() {
+                $('#machines-table').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
+            });
+
             function changeStatusAll(newStatus) {
                 $.get("../machines/change-status-all.php", {newStatus: newStatus}, function(data) {
-
                     reload();
-
                 }).fail(function() {
                     alert('Error al cambiar el estado de todas las máquinas');
                 });
             }
 
             function changeStatus(idMaquina) {
-
                 $.get("../machines/change-status.php", { ID: idMaquina }, function(data) {
-
-                    var boton = $('#boton' + idMaquina);
-                    var stausIcon = $('#statusIcon' + idMaquina);
-                    var nuevoEstado = data.trim() === "1";
-                    var nuevoTexto = nuevoEstado ? "Apagar" : "Encender";
-                    var nuevaClase = nuevoEstado ? 'power-off-button' : 'power-on-button';
-                    var nuevoIcono = nuevoEstado ? "<i class='far fa-lightbulb'></i>" : "<i class='fas fa-lightbulb'></i>";
-                    var nuevoStatus  = nuevoEstado ? " Encendido" : " Apagado  ";
-
-                    stausIcon.html(nuevoIcono + nuevoStatus);
-                    boton.html("<i class='fas fa-power-off'></i> " + nuevoTexto);
-                    boton.removeClass('power-on-button power-off-button').addClass(nuevaClase);
-
-                    $(document).ready(function() {
-                        $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
-                    });
-
+                    reload();
                 }).fail(function() {
                     alert('Error al cambiar el estado de la máquina');
                 });
             }
 
             function deleteMachine(idMaquina) {
-
                 $.get("../machines/delete.php", { ID: idMaquina }, function(data) {
-
                     reload();
-
                 }).fail(function() {
                     alert('Error al eliminar maquina');
-                }); 
-
+                });
             }
 
             function reload() {
-                    $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
-            
+                $('#machines-table').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
             }
 
             function searchTable() {
@@ -182,15 +153,10 @@
                     tbody.appendChild(newRow);
                 }
 
-                }
+            }
 
         </script>
 
-        <script>
-            $(document).ready(function() {
-                $('tbody').load('/TC2005B_602_01/IngeniaLab/src/machines/list-machines.php');
-            });
-        </script>
 
     </body>
 

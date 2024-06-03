@@ -25,7 +25,7 @@
             var studentId = modal.getAttribute('data-student-id');
 
             $.get("../users/delete-student.php", { ID: studentId }, function(data) {
-                $('tbody').load('/TC2005B_602_01/IngeniaLab/src/users/students.php');
+                $('#users-table').load('/TC2005B_602_01/IngeniaLab/src/users/students.php');
                 modal.style.display = 'none'; // Cierra la modal después de la acción
             }).fail(function() {
                 alert('Error al eliminar estudiante');
