@@ -32,8 +32,9 @@ function insertaradmin($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email");
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email OR id = :id");
         $query->bindParam(':email', $email);
+        $query->bindParam(':id', $id);
         $query->execute();
 
         if ($query->rowCount() > 0){
@@ -48,7 +49,7 @@ function insertaradmin($id, $name, $email, $password){
             $query->bindParam(':hashed_password', $hashed_password);
             $query->execute();
 
-            header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/users.php');
             exit();
         }
     } catch (PDOException $e) {
@@ -64,8 +65,9 @@ function insertarmaestro($id, $name, $email, $password){
     $conn = Database::connect();
 
     try{
-        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email");
+        $query = $conn->prepare("SELECT * FROM Usuarios WHERE correo = :email OR id = :id");
         $query->bindParam(':email', $email);
+        $query->bindParam(':id', $id);
         $query->execute();
 
         if ($query->rowCount() > 0){
@@ -80,7 +82,7 @@ function insertarmaestro($id, $name, $email, $password){
             $query->bindParam(':hashed_password', $hashed_password);
             $query->execute();
 
-            header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php');
+            header('Location: /TC2005B_602_01/IngeniaLab/src/views/users.php');
             exit();
         }
     } catch (PDOException $e) {
