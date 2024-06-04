@@ -83,7 +83,7 @@ CREATE TABLE Tipos_usuario (
 
 );
 
-INSERT INTO Tipos_usuario VALUES (1,"Super Administrador") (3, "Administrador"), (2, "Profesor");
+INSERT INTO Tipos_usuario VALUES (1,"Super Administrador"),(3, "Administrador"), (2, "Profesor");
 
 CREATE TABLE Usuarios (
 
