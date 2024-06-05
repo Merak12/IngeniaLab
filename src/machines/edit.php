@@ -30,28 +30,3 @@
         </form>
     </div>
 </div>
-
-
-<script>
-
-function editModal(machineId) {
-    // Hacer una petición AJAX para obtener los detalles de la máquina
-    $.ajax({
-        url: '../machines/get_machine.php', // Ruta al archivo PHP que devolverá los detalles de la máquina
-        type: 'GET',
-        data: { id: machineId },
-        success: function(response) {
-            var machine = JSON.parse(response);
-            $('#editID').val(machine.ID);
-            $('#editNombre').val(machine.nombre);
-            $('#editNumSerie').val(machine.numSerie);
-            $('#editTipoMaquina').val(machine.tipoMaquina);
-            $('#editModal').css('display', 'block');
-        },
-        error: function(error) {
-            console.error('Error obteniendo los detalles de la máquina:', error);
-        }
-    });
-}
-
-</script>

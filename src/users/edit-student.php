@@ -3,6 +3,7 @@
         <span class="close">&times;</span>
         <h2>Editar Estudiante</h2>
         <form id="editForm">
+
             <div class="form-group">
                 <label for="editNombre">Nombre</label>
                 <input type="hidden" id="editID" name="ID">
@@ -37,6 +38,7 @@
                 <button type="submit" class="btn-accept">Guardar Cambios</button>
                 <button type="button" class="btn-cancel">Cerrar</button>
             </div>
+            
         </form>
     </div>
 </div>

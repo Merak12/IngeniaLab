@@ -51,7 +51,7 @@
     </div>
 
     <?php require "../users/create-student.php"; ?>
-    <?php require "../users/edit.php"; ?>
+    <?php require "../users/edit-student.php"; ?>
     <?php require "../users/confirm-delete-student.php"; ?>
 
     <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>

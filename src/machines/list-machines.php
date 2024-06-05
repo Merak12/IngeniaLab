@@ -34,7 +34,7 @@ try {
             echo "<button class='$buttonClass' id='boton{$row['ID']}' onclick='changeStatus({$row['ID']})' ><i class='fas fa-power-off'></i> {$buttonStatus}</button>";
             echo "<button class='edit-button' onclick='event.preventDefault(); showDetailsModal({$row['ID']});'><i class='fas fa-info-circle'></i> Detalles</button>";
             echo "<button class='details-button' onclick='event.preventDefault(); editModal({$row['ID']});'><i class='far fa-edit'></i> Editar</button>";
-            echo "<button class='delete-button' onclick='deleteMachine({$row['ID']})'><i class='fas fa-trash'></i> Eliminar</button>";
+            echo "<button class='delete-button' onclick='openDeleteConfirmation({$row['ID']})'><i class='fas fa-trash'></i> Eliminar</button>";
             echo "</div>";
             echo "</td>";
             echo "</tr>";

@@ -14,7 +14,4 @@ $query->execute([$nombre, $numSerie, $tipoMaquina, $id]);
 
 Database::disconnect();
 
-// Redirigir o manejar la respuesta tras la actualización
-header('Location: /TC2005B_602_01/IngeniaLab/src/views/home.php'); // Ajusta esta ruta
-exit();
 ?>
