@@ -43,16 +43,14 @@ body, html {
 }
 
 .nav-link {
-
     display: flex;
-    justify-content: center;
+    align-items: center;
     height: 5rem;
     color: var(--text-primary);
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: filter var(--transition-speed);
-    padding: center;
-
+    padding: 0 1rem;
 }
 
 .nav-link:hover {
@@ -74,14 +72,13 @@ body, html {
     justify-content: flex-start;
 }
 
-.content {
+.main-content {
     margin-left: 50px;
     transition: margin-left var(--transition-speed);
     padding: 1rem;
 }
 
 .toggle-button {
-
     position: absolute;
     top: 50%;
     right: -25px;
@@ -94,7 +91,6 @@ body, html {
     cursor: pointer;
     font-size: 24px;
     border-radius: 50%;
-    
 }
 
 .sidebar.expanded {
@@ -104,4 +100,53 @@ body, html {
 .sidebar.expanded .toggle-button {
     right: -25px;
     content: "❮";
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .nav-item {
+        width: auto;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem;
+    }
+
+    .toggle-button {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        transform: none;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-top: 60px; /* Asegura que el contenido no quede cubierto por el botón */
+    }
+
+    .sidebar.expanded {
+        width: 100%;
+    }
+
+    .sidebar.expanded .toggle-button {
+        right: 10px;
+    }
+
+    .link-text {
+        display: block;
+    }
 }
