@@ -1,4 +1,4 @@
-var currentView = "students";
+var currentView = "list";
 
 $(document).ready(function() {
     loadCurrentView();
@@ -110,7 +110,7 @@ function toggleView() {
         viewCards();
     } else {
         currentView = "list";
-        document.getElementById('toggleViewButton').innerHTML = '<i class="fas fa-th-list"></i>';
+        document.getElementById('toggleViewButton').innerHTML = '<i class="fas fa-table"></i>';
         viewList();
     }
 }

@@ -55,7 +55,7 @@
 
             <div class="search-bar">
                 <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, numero de serie, estado, etc.">
-                <button type="button" class='add-button' id="toggleViewButton" onclick='toggleView()'> <i class="fas fa-th-list"></i></button>
+                <button type="button" class='add-button' id="toggleViewButton" onclick='toggleView()'> <i class="fas fa-table"></i></button>
             </div>
 
             <div id="machines-table"></div>
@@ -63,7 +63,6 @@
         </div>
 
         <?php include '../machines/create.php'; ?>
-        <?php include '../machines/details.php'; ?>
         <?php include '../machines/edit.php'; ?>
         <?php include '../machines/confirm-delete-machine.php'; ?>
 

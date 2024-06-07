@@ -1,37 +1,36 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
-$response = array();
+$numSerie = $_POST['numSerie'];
+$nombre = $_POST['nombre'];
+$tipoMaquina = $_POST['tipo_maquina'];
+$imagen = $_FILES['imagen']['name'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['numSerie']) && !empty($_POST['nombre'])) {
+// Ruta donde se guardarán las imágenes subidas
+$target_dir = $_SERVER['DOCUMENT_ROOT']."/TC2005B_602_01/IngeniaLab/src/machines/uploads/";
+$target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+
+// Mover la imagen subida a la carpeta 'uploads'
+if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
     
     $pdo = Database::connect();
-    $numSerie = $_POST['numSerie'];
-    $nombre = $_POST['nombre'];
-    $tipoM = $_POST['tipo_maquina'];
-    $tiempoUsoTotal = 0.0; // Tiempo de uso total inicial.
-    $estado = 0; // Estado inicial es 0.
-    $func = 1;
+    $sql = "INSERT INTO Maquinas (numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento, imagen)
+            VALUES (:numSerie, :nombre, :tipoMaquina, CURDATE(), 0, 1, 1, :imagen)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':numSerie', $numSerie);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':tipoMaquina', $tipoMaquina);
+    $stmt->bindParam(':imagen', $imagen);
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO Maquinas (numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUES(?, ?, ?, CURDATE(), 0.0, 0, 1)";
-    $q = $pdo->prepare($sql);
-
-    try {
-        $q->execute(array($numSerie, $nombre, $tipoM));
-        $response['success'] = true;
-        $response['message'] = "Máquina agregada correctamente.";
-    } catch (Exception $e) {
-        $response['success'] = false;
-        $response['message'] = "Error al agregar la máquina: " . $e->getMessage();
+    if ($stmt->execute()) {
+        $response = array("success" => true, "message" => "Máquina agregada exitosamente");
+    } else {
+        $response = array("success" => false, "message" => "Error al agregar la máquina");
     }
-
     Database::disconnect();
 } else {
-    $response['success'] = false;
-    $response['message'] = "Todos los campos son obligatorios.";
+    $response = array("success" => false, "message" => "Error al subir la imagen");
 }
 
-header('Content-Type: application/json');
 echo json_encode($response);
 ?>

@@ -170,6 +170,8 @@ background: #3b5bdb;
     gap: 10px; /* Espacio entre los botones */
 }
 
+/*---------- Vista tipo tarjetas ----------*/
+
 .machine-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -198,6 +200,16 @@ background: #3b5bdb;
     color: #666;
     font-size: 16px;
 }
+
+.machine-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Ajusta este valor según el tamaño deseado */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 
 /*----------Contenido ----------*/
 
@@ -371,4 +383,20 @@ h2 {
 /* Agrega esto a tus estilos existentes */
 .sidebar.expanded + #main-content {
     margin-left: 150px; /* Ajusta según el ancho de tu barra de navegación expandida */
+}
+
+.machine-details {
+    text-align: center;
+}
+
+.machine-image-details {
+    width: 100%;
+    max-width: 300px; /* Ajusta este valor según el tamaño deseado */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.machine-details p {
+    text-align: left;
 }

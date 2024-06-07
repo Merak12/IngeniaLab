@@ -83,7 +83,6 @@ CREATE TABLE Tipos_usuario (
 
 );
 
-INSERT INTO Tipos_usuario VALUES (1,"Super Administrador"),(3, "Administrador"), (2, "Profesor");
 
 CREATE TABLE Usuarios (
 
@@ -99,18 +98,19 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Maquinas (
 
-ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-numSerie VARCHAR(100),
-nombre VARCHAR(50),
-tipoMaquina INT,
-fechaRegistro DATE,
-tiempoUso FLOAT,
-estado INT,
-funcionamiento INT,
-
-FOREIGN KEY (tipoMaquina) REFERENCES Tipos_maquina(idType) ON DELETE RESTRICT
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    numSerie VARCHAR(100),
+    nombre VARCHAR(50),
+    tipoMaquina INT,
+    fechaRegistro DATE,
+    tiempoUso FLOAT,
+    estado INT,
+    funcionamiento INT,
+    imagen VARCHAR(255),  -- Nueva columna para almacenar el nombre de la imagen
+    FOREIGN KEY (tipoMaquina) REFERENCES Tipos_maquina(idType) ON DELETE RESTRICT
 
 );
+
 
 INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUE ("156245", "Taladro", 3, "2024-12-12", 0.0, 0, 0);
 
@@ -127,15 +127,18 @@ CREATE TABLE Registro_uso_maquinas (
 
 INSERT INTO Registro_uso_maquinas VALUES (1, "2024-03-20 12:10:00", 1), (1, "2024-03-20 12:10:00", 2);
 
-CREATE TABLE Reservas (
+CREATE TABLE Reservas_maquina (
 
 ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-idMaestro INT,
+idUsuarios VARCHAR(9),
 fechaInicio DATETIME,
 fechaFinal DATETIME,
 maquina INT,
+motivo_uso VARCHAR(100),
 
-FOREIGN KEY (idMaestro) REFERENCES Maestros(ID) ON DELETE RESTRICT,
+FOREIGN KEY (idUsuarios) REFERENCES Usuarios(id) ON DELETE RESTRICT,
 FOREIGN KEY (maquina) REFERENCES Maquinas(ID) ON DELETE RESTRICT
+
+
 
 );

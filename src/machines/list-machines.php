@@ -52,3 +52,6 @@ try {
     Database::disconnect();
 }
 ?>
+
+
+<?php include '../machines/details.php'; ?>
