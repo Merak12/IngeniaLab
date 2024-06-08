@@ -42,20 +42,24 @@
         <div class="main-content" id="main-content">
 
             <div class="header">
-                <h1>Administrar Equipos</h1>
-                <button class="open-modal-btn add-button" data-modal="addMachineModal">Añadir nueva maquina</button>
-            </div>
-
-            <div class='button-container'>
-
+                <h1>Tablero</h1>
+                <div class='button-container'>
                 <button onclick='changeStatusAll(1)' class='power-on-button'><i class='fas fa-power-off'></i> Encender Todo</button>
                 <button onclick='changeStatusAll(0)' class='power-off-button'><i class='fas fa-power-off'></i> Apagar Todo</button>
-
+                <button class="open-modal-btn add-button" data-modal="addMachineModal">Añadir nueva maquina</button>
+                </div>
             </div>
+
+            
+
+                
+
+            
 
             <div class="search-bar">
                 <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, numero de serie, estado, etc.">
-                <button type="button" class='add-button' id="toggleViewButton" onclick='toggleView()'> <i class="fas fa-table"></i></button>
+                <button class="open-modal-btn add-button" data-modal="addMachineTypeModal"><i class="fas fa-plus-square"></i> Añadir maquinaria</button>
+                <button type="button" class='add-button' id="toggleViewButton" onclick='toggleView()'> <i class="fas fa-th"></i></button>
             </div>
 
             <div id="machines-table"></div>
@@ -65,6 +69,7 @@
         <?php include '../machines/create.php'; ?>
         <?php include '../machines/edit.php'; ?>
         <?php include '../machines/confirm-delete-machine.php'; ?>
+        <?php include '../machines/create-machine-type.php'; ?>
 
         <script src="../../public/js/modal.js"></script>
         <script src="../../public/js/home.js"></script>

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($id > 0) {
         $pdo = Database::connect();
-        $sql = "DELETE FROM reservas_maquina WHERE ID = ?";
+        $sql = "DELETE FROM Reservas_maquina WHERE ID = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
         Database::disconnect();

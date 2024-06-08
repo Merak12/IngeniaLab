@@ -400,3 +400,9 @@ h2 {
 .machine-details p {
     text-align: left;
 }
+
+.right-align {
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos del contenedor a la derecha */
+    gap: 10px; /* Espacio entre los botones */
+}

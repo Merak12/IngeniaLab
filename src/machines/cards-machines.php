@@ -29,4 +29,4 @@ echo "</div>";
 
 ?>
 
-<?php include '../machines/details.php'; ?>
+    <?php include '../machines/details.php'; ?>

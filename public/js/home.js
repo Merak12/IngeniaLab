@@ -110,7 +110,7 @@ function toggleView() {
         viewCards();
     } else {
         currentView = "list";
-        document.getElementById('toggleViewButton').innerHTML = '<i class="fas fa-table"></i>';
+        document.getElementById('toggleViewButton').innerHTML = '<i class="fas fa-th"></i>';
         viewList();
     }
 }

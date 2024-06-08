@@ -32,7 +32,7 @@
                         exit();
 
                     } elseif($_SESSION['idType'] == 2){
-                        header('Location: /TC2005B_602_01/IngeniaLab/src/views/profesor/profesor.php');
+                        header('Location: /TC2005B_602_01/IngeniaLab/src/views/professor.php');
                         exit();
                     } else{//Incorrect idType
                         header('Location: /TC2005B_602_01/IngeniaLab/src/views/login.php?error=InvalidType');

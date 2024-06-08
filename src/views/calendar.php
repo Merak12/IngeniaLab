@@ -1,12 +1,13 @@
 <?php
+
+
 session_start();
 if (isset($_POST['machine_id'])) {
     $_SESSION['machine_id'] = $_POST['machine_id'];  
 }
-// else if (isset($_POST['mesas_id'])) {
-//   $_SESSION['mesas_id'] = $_POST['mesas_id']; 
-// }
-// ?>
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,7 +58,9 @@ if (isset($_POST['machine_id'])) {
           <div class="event-day">Mie</div>
           <div class="event-date">12th diciembre 2022</div>
         </div>
+
         <div class="events"></div>
+
         <div class="add-event-wrapper">
           <div class="add-event-header">
             <div class="title">Agregar Evento</div>

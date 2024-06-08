@@ -69,7 +69,5 @@ if (isset($_GET['id'])) {
     } else {
         echo "<p>ID de máquina no válido.</p>";
     }
-} else {
-    echo "<p>Falta el ID de la máquina.</p>";
 }
 ?>
