@@ -83,6 +83,8 @@ CREATE TABLE Tipos_usuario (
 
 );
 
+INSERT INTO Tipos_usuario VALUES (3, "Administrador"), (2, "Profesor");
+
 
 CREATE TABLE Usuarios (
 
@@ -95,6 +97,23 @@ CREATE TABLE Usuarios (
     FOREIGN KEY (idType) REFERENCES Tipos_usuario(id) ON DELETE RESTRICT
 
 );
+
+INSERT INTO Usuarios VALUES 
+('A01737652', 
+'Ezio Uriel Saucedo Diaz', 
+'A01737652@tec.mx', 
+'$2y$10$hVqkEe4sQoQtAICyVrbi/ONnTo5qHODBkIJdBzdzF5HxJ0G5.Vdo2', 
+3),
+('L01738111', 
+'Ana Luisa Flores', 
+'L01738111@tec.mx', 
+'$2y$10$hVqkEe4sQoQtAICyVrbi/ONnTo5qHODBkIJdBzdzF5HxJ0G5.Vdo2', 
+2),
+('L01737272', 
+'Jose Pablo Ramirez Ramirez', 
+'L01737272@tec.mx', 
+'$2y$10$hVqkEe4sQoQtAICyVrbi/ONnTo5qHODBkIJdBzdzF5HxJ0G5.Vdo2', 
+2);
 
 CREATE TABLE Maquinas (
 
@@ -112,7 +131,10 @@ CREATE TABLE Maquinas (
 );
 
 
-INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) VALUE ("156245", "Taladro", 3, "2024-12-12", 0.0, 0, 0);
+INSERT INTO Maquinas(numSerie, nombre, tipoMaquina, fechaRegistro, tiempoUso, estado, funcionamiento) 
+VALUES ("156245", "Taladro A24", 3, "2024-12-12", 6.0, 0, 0), 
+('321221', 'Impresora AnyCubic Mega', "2024-12-12", 8.0, 0, 0),
+('423231', 'Cortadora Resi W8', 1, "2024-12-12", 4.0, 0, 0);
 
 CREATE TABLE Registro_uso_maquinas (
 
@@ -125,7 +147,13 @@ CREATE TABLE Registro_uso_maquinas (
 
 );
 
-INSERT INTO Registro_uso_maquinas VALUES (1, "2024-03-20 12:10:00", 1), (1, "2024-03-20 12:10:00", 2);
+INSERT INTO Registro_uso_maquinas (idMaquina, tiempo, estado, idUsuario) VALUES
+(1, "2024-03-20 08:00:00", 1, "A01732526"), (1, "2024-03-20 10:00:00", 0, "A01732526"), 
+(1, "2024-03-21 08:00:00", 1, "L01737272"), (1, "2024-03-21 12:00:00", 0, "L01737272"), 
+(2, "2024-03-20 08:00:00", 1, "A01732526"), (2, "2024-03-20 12:00:00", 0, "A01732526"), 
+(2, "2024-03-21 08:00:00", 1, "L01738111"), (2, "2024-03-21 12:00:00", 0, "L01738111"), 
+(3, "2024-03-20 08:00:00", 1, "A01732526"), (3, "2024-03-20 10:00:00", 0, "A01732526"), 
+(3, "2024-03-21 08:00:00", 1, "L01737272"), (3, "2024-03-21 10:00:00", 0, "L01737272"); 
 
 CREATE TABLE Reservas_maquina (
 
