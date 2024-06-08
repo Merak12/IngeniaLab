@@ -263,7 +263,6 @@ function updateEvents(date) {
         </div>`;
   }
   eventsContainer.innerHTML = events;
-  saveEvents();
 }
 
 //function to add event
@@ -457,37 +456,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //function to delete event when clicked on event
 eventsContainer.addEventListener("click", (e) => {
-  if (e.target.classList.contains("event")) {
-    if (confirm("Are you sure you want to delete this event?")) {
-      const eventTitle = e.target.children[0].children[1].innerHTML;
-
-      eventsArr.forEach((event) => {
+  const eventElement = e.target.closest(".event");
+  if (eventElement) {
+    if (confirm("¿Seguro que quieres eliminar este evento?")) {
+      const eventTitle = eventElement.querySelector(".event-title").innerHTML;
+      
+      // Encontrar el evento en eventsArr
+      let eventIndex = -1;
+      eventsArr.forEach((event, index) => {
         if (
           event.day === activeDay &&
           event.month === month + 1 &&
           event.year === year
         ) {
-          event.events.forEach((item, index) => {
+          eventIndex = index;
+          event.events.forEach((item, itemIndex) => {
             if (item.motivo === eventTitle) {
-              event.events.splice(index, 1);
+              // Eliminar evento de la base de datos
+              fetch('http://localhost/TC2005B_602_01/IngeniaLab/src/reservass/eliminar-reserva.php', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  day: activeDay,
+                  month: month + 1,
+                  year: year,
+                  motivo: eventTitle
+                })
+              })
+              .then(response => response.text())
+              .then(data => {
+                console.log(data); // Mostrar la respuesta del servidor
+
+                if (data.includes('Evento eliminado correctamente')) {
+                  // Eliminar evento de eventsArr
+                  event.events.splice(itemIndex, 1);
+                  if (event.events.length === 0) {
+                    eventsArr.splice(eventIndex, 1);
+                    // Quitar la clase de evento del día si no hay eventos restantes
+                    const activeDayEl = document.querySelector(".day.active");
+                    if (activeDayEl && activeDayEl.classList.contains("event")) {
+                      activeDayEl.classList.remove("event");
+                    }
+                  }
+                  updateEvents(activeDay); // Actualizar la interfaz
+                } else {
+                  alert("Error al eliminar el evento. Inténtalo de nuevo.");
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+                alert("Error al eliminar el evento. Inténtalo de nuevo.");
+              });
             }
           });
-          //if no events left in a day then remove that day from eventsArr
-          if (event.events.length === 0) {
-            eventsArr.splice(eventsArr.indexOf(event), 1);
-            //remove event class from day
-            const activeDayEl = document.querySelector(".day.active");
-            if (activeDayEl.classList.contains("event")) {
-              activeDayEl.classList.remove("event");
-            }
-          }
         }
       });
-      updateEvents(activeDay);
     }
   }
 });
-
 
 // Función para guardar eventos en la base de datos
 function saveEvents() {
