@@ -23,9 +23,11 @@ if (isset($_POST['machine_id'])) {
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../../public/css/styleCalendar.css" />
+    <link rel="stylesheet" href="../../public/css/stylebt.css" />
     <title>Calendar con Eventos</title>
   </head>
   <body>
+  
     <div class="container">
       <div class="left">
         <div class="calendar">
@@ -93,6 +95,7 @@ if (isset($_POST['machine_id'])) {
       <button class="add-event">
         <i class="fas fa-plus"></i>
       </button>
+      <a href="apartar.php" class="logout-btn">Salir</a>
       
     </div>
     
