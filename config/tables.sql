@@ -170,3 +170,28 @@ FOREIGN KEY (maquina) REFERENCES Maquinas(ID) ON DELETE RESTRICT
 
 
 );
+
+CREATE TABLE Mesas (
+
+    ID VARCHAR(12) PRIMARY KEY,
+    fechaRegistro DATETIME,
+    tiempoUso INT,
+    estado INT
+
+
+);
+
+
+CREATE TABLE Reservas_mesa (
+
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idUsuarios VARCHAR(9),
+    fechaInicio DATETIME,
+    fechaFinal DATETIME,
+    idMesa VARCHAR(12),
+    motivo_uso VARCHAR(100),
+
+    FOREIGN KEY (idUsuarios) REFERENCES Usuarios(id) ON DELETE RESTRICT,
+    FOREIGN KEY (idMesa) REFERENCES Mesas(ID) ON DELETE RESTRICT
+
+);
