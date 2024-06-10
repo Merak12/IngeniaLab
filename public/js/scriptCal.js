@@ -522,7 +522,7 @@ function saveEvents() {
   const formData = new FormData();
   formData.append('eventsArr', JSON.stringify(eventsArr));
 
-  // fetch('http://localhost/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php', {
+  // fetch('/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php', {
   //   method: 'POST',
   //   body: formData,
   // })

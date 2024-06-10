@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $year = $data['year'];
 
     // Obtener el idUsuario de la sesión actual y el id de la máquina seleccionada
-    $idUsuario = $_SESSION['idUsuario'] ?? 1;  // ID del usuario de la sesión actual
-    $maquina = $_SESSION['machine_id'] ?? null; // ID de la máquina
+    $idUsuario = $_SESSION['idUsuario'] ?? 1;  
+    $maquina = $_SESSION['machine_id'] ?? null; 
 
     // Construir las fechas de inicio y final
     $fechaInicio = sprintf("%04d-%02d-%02d %s:00", $year, $month, $day, $time_from); // Fecha y hora de inicio del evento

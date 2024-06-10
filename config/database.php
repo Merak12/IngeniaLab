@@ -3,10 +3,10 @@
         
 	    private static $dbName = 'TC2005B_602_01';
 		private static $dbHost = 'localhost';
-		private static $dbUsername = 'root';
-		//private static $dbUsername = 'TC2005B_602_01';
-		private static $dbUserPassword 	= '';
-		//private static $dbUserPassword 	= ';v)LRc6$OzCQ';
+		//private static $dbUsername = 'root';
+		private static $dbUsername = 'TC2005B_602_01';
+		//private static $dbUserPassword 	= '';
+		private static $dbUserPassword 	= ';v)LRc6$OzCQ';
 
 		private static $cont  = null;
 

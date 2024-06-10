@@ -1,7 +1,5 @@
 <?php
 
-   
-
     if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
         header("Location: login.php");
         exit();
