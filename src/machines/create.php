@@ -51,6 +51,7 @@ if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
 </div>
 
 <script>
+    
     document.addEventListener("DOMContentLoaded", function() {
 
         var modal = document.getElementById('addMachineModal');

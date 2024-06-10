@@ -11,7 +11,7 @@ if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
     <div class="modalAdd-content">
         <span class="close" data-modal="addMachineTypeModal">&times;</span>
         <h2>Agregar nueva máquina</h2>
-        <form id="addMachineForm">
+        <form id="addMachineTypeForm">
             <div class="form-group">
                 <label for="nombre">Nombre de nueva maquinaria:</label>
                 <input type="text" id="nombre" name="nombre" required>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
     document.addEventListener("DOMContentLoaded", function() {
         var modal = document.getElementById('addMachineTypeModal');
         var closeModalBtns = document.querySelectorAll('.close, .cancel-btn');
-        var form = document.getElementById('addMachineForm');
+        var form = document.getElementById('addMachineTypeForm');
         var messageDiv = document.getElementById('message');
 
         closeModalBtns.forEach(function(btn) {
