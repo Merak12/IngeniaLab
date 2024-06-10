@@ -383,7 +383,7 @@ addEventSubmit.addEventListener("click", () => {
   };
 
   //Enviar el nuevo evento al servidor usando fetch
-  fetch('http://localhost/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php', {
+  fetch('/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -473,7 +473,7 @@ eventsContainer.addEventListener("click", (e) => {
           event.events.forEach((item, itemIndex) => {
             if (item.motivo === eventTitle) {
               // Eliminar evento de la base de datos
-              fetch('http://localhost/TC2005B_602_01/IngeniaLab/src/reservass/eliminar-reserva.php', {
+              fetch('/TC2005B_602_01/IngeniaLab/src/reservass/eliminar-reserva.php', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
@@ -540,7 +540,7 @@ function saveEvents() {
 //function to get events from local storage
 function getEvents() {
   
-  fetch('http://localhost/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php')
+  fetch('/TC2005B_602_01/IngeniaLab/src/reservass/add-reserva.php')
   .then(response => response.json())
   .then(data => {
     eventsArr.push(...data);
