@@ -3,18 +3,21 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 $pdo = Database::connect();
 
-$idStudent = isset($_GET['ID']) ? $_GET['ID'] : null;
+$idUser = isset($_GET['ID']) ? $_GET['ID'] : null;
+error_log("ID recibido: " . $idUser); // Agregar log
 
-if ($idStudent) {
+if ($idUser) {
     $sql = "DELETE FROM Alumnos WHERE ID = ?";
     $stmt = $pdo->prepare($sql);
-    if ($stmt->execute([$idStudent])) {
-        echo "Estudiante eliminado correctamente.";
+    if ($stmt->execute([$idUser])) {
+        echo "Usuario eliminado correctamente.";
     } else {
-        echo "Error al eliminar estudiante: " . implode(", ", $stmt->errorInfo());
+        echo "Error al eliminar usuario: " . implode(", ", $stmt->errorInfo());
     }
 } else {
     echo "ID no proporcionado o inválido.";
 }
 
 Database::disconnect();
+
+?>

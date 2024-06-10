@@ -1,4 +1,5 @@
 <?php
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/TC2005B_602_01/IngeniaLab/config/database.php';
 
 $numSerie = $_POST['numSerie'];

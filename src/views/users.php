@@ -53,8 +53,10 @@
     <?php require "../users/create-student.php"; ?>
     <?php require "../users/edit-student.php"; ?>
     <?php require "../users/confirm-delete-student.php"; ?>
+    <?php require "../users/confirm-delete-teacher.php"; ?>
 
     <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
+    <script src="/TC2005B_602_01/IngeniaLab/public/js/users.js"></script>
 
     <script>
         var currentView = "students"; // Variable para almacenar la vista actual
@@ -139,6 +141,8 @@
                 }
             });
         }
+
+        
     </script>
 
 </body>

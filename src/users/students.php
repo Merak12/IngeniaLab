@@ -28,7 +28,7 @@
                         echo "<div class='button-container'>";
 
                             echo "<button type='button' class='edit-button' onclick='openEditModal(" . json_encode($row['ID']) . ");'>Editar</button>";
-                            echo "<button class='delete-button' onclick='event.preventDefault(); editModal({$row['ID']});')'><i class='fas fa-trash'></i> Eliminar</button>";
+                            echo "<button class='delete-button' onclick='openDeleteConfirmation(" . json_encode($row['ID']) . ")'><i class='fas fa-trash'></i> Eliminar</button>";
                         
                         echo "</div>";
                         
