@@ -5,34 +5,35 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/TC2005B_602_01/IngeniaLab/config/data
 // Obtener conexión a la base de datos
 $pdo = Database::connect();
 
-// Ruta para eliminar eventos de la base de datos
+// Verificar si la solicitud es de tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos de la solicitud
     $data = json_decode(file_get_contents("php://input"), true);
-    $id = intval($data['id']);
+    
+    // Verificar si se recibieron los datos necesarios
+    if (isset($data['day'], $data['month'], $data['year'], $data['motivo'])) {
+        $day = intval($data['day']);
+        $month = intval($data['month']);
+        $year = intval($data['year']);
+        $motivo = $data['motivo'];
 
-    if ($id > 0) {
-        $pdo = Database::connect();
-        $sql = "DELETE FROM Reservas_maquina WHERE ID = ?";
-    $data = json_decode(file_get_contents('php://input'), true);
+        // Preparar la sentencia SQL
+        $sql = "DELETE FROM Reservas_maquina WHERE DAY(fechaInicio) = ? AND MONTH(fechaInicio) = ? AND YEAR(fechaInicio) = ? AND motivo_uso = ?";
 
-    $day = $data['day'];
-    $month = $data['month'];
-    $year = $data['year'];
-    $motivo = $data['motivo'];
+        try {
+            // Preparar la sentencia
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$day, $month, $year, $motivo]);
 
-    // Preparar la sentencia SQL
-    $sql = "DELETE FROM Reservas_maquina WHERE DAY(fechaInicio) = ? AND MONTH(fechaInicio) = ? AND YEAR(fechaInicio) = ? AND motivo_uso = ?";
-
-    try {
-        // Preparar la sentencia
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$day, $month, $year, $motivo]);
-
-        echo "Evento eliminado correctamente";
-    } catch (PDOException $e) {
-        echo "Error al eliminar evento: " . $e->getMessage();
+            echo "Evento eliminado correctamente";
+        } catch (PDOException $e) {
+            echo "Error al eliminar evento: " . $e->getMessage();
+        }
+    } else {
+        echo "Faltan datos necesarios para eliminar el evento.";
     }
 }
 
+// Cerrar la conexión
 $pdo = null;
 ?>

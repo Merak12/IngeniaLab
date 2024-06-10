@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 if (isset($_POST['machine_id'])) {
     $_SESSION['machine_id'] = $_POST['machine_id'];  

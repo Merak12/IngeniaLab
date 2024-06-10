@@ -17,15 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $year = $data['year'];
 
     // Obtener el idUsuario de la sesión actual y el id de la máquina seleccionada
-    $idUsuario = $_SESSION['idUsuario'] ?? 1;  // ID del usuario de la sesión actual
-    $maquina = $_SESSION['machine_id'] ?? null; // ID de la máquina
+    $idUsuario = $_SESSION['idUsuario'] ?? 1;  
+    $maquina = $_SESSION['machine_id'] ?? null; 
 
+    // Construir las fechas de inicio y final
     $fechaInicio = sprintf("%04d-%02d-%02d %s:00", $year, $month, $day, $time_from); // Fecha y hora de inicio del evento
     $fechaFinal = sprintf("%04d-%02d-%02d %s:00", $year, $month, $day, $time_to);   // Fecha y hora de fin del evento
 
     try {
         // Preparar la sentencia SQL
-        $sql = "INSERT INTO Reservas_maquina (id, fechaInicio, fechaFinal, maquina, motivo_uso)
+        $sql = "INSERT INTO Reservas_maquina (idUsuarios, fechaInicio, fechaFinal, maquina, motivo_uso)
                 VALUES (?, ?, ?, ?, ?)";
 
         // Preparar la sentencia
@@ -37,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al guardar evento: " . $e->getMessage();
     }
 }
+
 // Ruta para obtener eventos de la base de datos
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {

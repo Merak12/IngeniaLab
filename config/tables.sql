@@ -125,7 +125,7 @@ CREATE TABLE Maquinas (
     tiempoUso FLOAT,
     estado INT,
     funcionamiento INT,
-    imagen VARCHAR(255),  -- Nueva columna para almacenar el nombre de la imagen
+    imagen VARCHAR(255),
     FOREIGN KEY (tipoMaquina) REFERENCES Tipos_maquina(idType) ON DELETE RESTRICT
 
 );
