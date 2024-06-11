@@ -51,9 +51,57 @@
         </div>
 
         <div class="search-bar">
-            <input type="text" placeholder="Buscar por nombre, correo, etc.">
-            <button class="search-button">Buscar</button>
+
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, correo, etc.">
+
+
         </div>
+
+        <script>
+            function searchTable() {
+                var input, filter, table, tr, td, i, j, txtValue, visible;
+                input = document.getElementById("searchInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("user-table");
+                tr = table.getElementsByTagName("tr");
+                var tbody = table.querySelector("tbody");
+                var noResultFound = true;
+
+                var noResultsRow = document.querySelector(".no-results");
+                if (noResultsRow) {
+                    noResultsRow.remove();
+                }
+
+                for (i = 1; i < tr.length; i++) {
+                    tr[i].style.display = "none";
+                    td = tr[i].getElementsByTagName("td");
+                    visible = false;
+                    for (j = 0; j < td.length; j++) {
+                        if (td[j]) {
+                            txtValue = td[j].textContent || td[j].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                visible = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (visible) {
+                        tr[i].style.display = "";
+                        noResultFound = false;
+                    }
+                }
+
+                if (noResultFound) {
+                    var newRow = document.createElement("tr");
+                    newRow.className = "no-results";
+                    newRow.innerHTML = "<td colspan='4'>No se encontraron resultados</td>";
+                    tbody.appendChild(newRow);
+                }
+            }
+
+        </script>
+
+
 
         <table class="user-table">
             <thead>
