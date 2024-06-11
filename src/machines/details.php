@@ -1,4 +1,5 @@
 <div id="machineDetailsModal" class="modal">
+    
     <div class="modalDetails-content">
         <span class="close" data-modal="machineDetailsModal">&times;</span>
         <h2>Detalles de la Máquina</h2>
@@ -7,6 +8,7 @@
             <button type="button" class="cancel-btn" data-modal="machineDetailsModal">Cerrar</button>
         </div>
     </div>
+    
 </div>
 
 <script>

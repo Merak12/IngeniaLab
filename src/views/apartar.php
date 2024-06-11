@@ -24,17 +24,13 @@
 
 <ul class="sidebar-nav">
     <li class="nav-item">
-        <a href="../views/home.php" class="nav-link">
+        <a href="../views/apartar.php" class="nav-link">
             <i class="fas fa-home"></i>
             <span class="link-text">Inicio</span>
         </a>
+        
     </li>
-    <li class="nav-item">
-        <a href="../views/apartar.php" class="nav-link">
-            <i class="fas fa-calendar"></i>
-            <span class="link-text">Apartar equipo</span>
-        </a>
-    </li>
+   
     <li class="nav-item">
         <a href="/TC2005B_602_01/IngeniaLab/src/common/logout.php" class="nav-link">
             <i class="fas fa-sign-out-alt"></i>

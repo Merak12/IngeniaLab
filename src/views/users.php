@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
         header("Location: login.php");
         exit();
@@ -25,9 +27,10 @@
 
 </head>
 <body>
+    
     <?php include '../common/sideBar.html' ?>
 
-    <div class="main-content">
+    <div class="main-content" id="main-content">
 
         <div class="header">
 
@@ -50,11 +53,15 @@
 
     <?php require "../users/create-student.php"; ?>
     <?php require "../users/edit-student.php"; ?>
+    <?php require "../users/edit-teacher.php"; ?>
     <?php require "../users/confirm-delete-student.php"; ?>
+    <?php require "../users/confirm-delete-teacher.php"; ?>
 
     <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
+    <script src="/TC2005B_602_01/IngeniaLab/public/js/users.js"></script>
 
     <script>
+
         var currentView = "students"; // Variable para almacenar la vista actual
 
         $(document).ready(function() {
@@ -137,6 +144,7 @@
                 }
             });
         }
+        
     </script>
 
 </body>

@@ -4,23 +4,28 @@ var openModalBtns = document.querySelectorAll(".open-modal-btn");
 openModalBtns.forEach(function(btn) {
 
     btn.onclick = function() {
-        var modalId = this.getAttribute("data-modal");
-        var modal = document.getElementById(modalId);
+
+        let modalId = this.getAttribute("data-modal");
+        let modal = document.getElementById(modalId);
         modal.style.display = "block";
     }
 
 });
 
 // Obtener todos los elementos de cerrar (X) y los botones de cancelar
-var closeBtns = document.querySelectorAll(".close, .cancel-btn");
+let closeBtns = document.querySelectorAll(".close, .cancel-btn");
 
 // Agregar el evento click a cada uno para cerrar el modal correspondiente
 closeBtns.forEach(function(btn) {
 
     btn.onclick = function() {
-        var modalId = this.getAttribute("data-modal");
-        var modal = document.getElementById(modalId);
+
+        let modalId = this.getAttribute("data-modal");
+        let modal = document.getElementById(modalId);
         modal.style.display = "none";
+
+        console.log("Preisonado")
+
     }
     
 });

@@ -13,7 +13,7 @@ body, html {
 }
 
 .sidebar {
-    width: 50px;
+    width: 7.5vw;
     height: 100vh;
     position: fixed;
     background-color: var(--bg-primary);
@@ -21,11 +21,12 @@ body, html {
     top: 0;
     left: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-nav {
     list-style: none;
-    padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -43,19 +44,23 @@ body, html {
 }
 
 .nav-link {
+
     display: flex;
     align-items: center;
     height: 5rem;
-    color: var(--text-primary);
+    color: #FFF;
+    font-size: 3vh;
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: filter var(--transition-speed);
-    padding: 0 1rem;
+    width: 7.5vw;
+    
 }
+
 
 .nav-link:hover {
     filter: grayscale(0%) opacity(1);
-    background: var(--bg-secondary);
+    background: rgba(0,0, 0, 0.1);
 }
 
 .link-text {
@@ -91,6 +96,7 @@ body, html {
     cursor: pointer;
     font-size: 24px;
     border-radius: 50%;
+    z-index: 10;
 }
 
 .sidebar.expanded {

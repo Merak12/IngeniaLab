@@ -1,6 +1,6 @@
 <?php
 
-    //session_start();
+    session_start();
 
     if (!isset($_SESSION['idType']) || $_SESSION['idType'] != 3) {
         header("Location: login.php");
@@ -27,12 +27,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
-        <style>
-
-            
-
-        </style>
-
     </head>
 
     <body>
@@ -50,12 +44,6 @@
                 </div>
             </div>
 
-            
-
-                
-
-            
-
             <div class="search-bar">
                 <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar por nombre, numero de serie, estado, etc.">
                 <button class="open-modal-btn add-button" data-modal="addMachineTypeModal"><i class="fas fa-plus-square"></i> Añadir maquinaria</button>
@@ -71,8 +59,8 @@
         <?php include '../machines/confirm-delete-machine.php'; ?>
         <?php include '../machines/create-machine-type.php'; ?>
 
-        <script src="../../public/js/modal.js"></script>
-        <script src="../../public/js/home.js"></script>
+        <script src="/TC2005B_602_01/IngeniaLab/public/js/home.js"></script>
+        <script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
 
 
     </body>

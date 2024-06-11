@@ -52,7 +52,6 @@
         var form = document.getElementById('addStudentForm');
         var messageDiv = document.getElementById('message');
 
-        // Procesamiento del formulario
         form.onsubmit = function(event) {
 
             event.preventDefault();
@@ -60,15 +59,13 @@
             var matricula = document.getElementById('matricula').value;
             var correo = document.getElementById('mail').value;
 
-            // Validación de la matrícula y el correo
             if (correo.substr(0, 9) !== matricula) {
                 messageDiv.innerHTML = '<p style="color:red;">Los primeros 9 dígitos del correo deben ser iguales a la matrícula.</p>';
-                return; // Detener la ejecución si hay un error
+                return;
             }
 
             var formData = new FormData(form);
 
-            // Llamada fetch para enviar los datos del formulario
             fetch('/TC2005B_602_01/IngeniaLab/src/users/insert-estudiante.php', {
                 method: 'POST',
                 body: formData

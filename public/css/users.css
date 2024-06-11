@@ -5,16 +5,29 @@ body {
 }
 
 .main-content {
-  margin-left: 250px;
+
   padding: 20px;
   width: calc(100% - 250px);
+
+}
+
+#main-content {
+  margin-left: 100px;
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+#main-content.expanded {
+  margin-left: 200px;
 }
 
 .header {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+
 }
 button{
   background: #4c6ef5;

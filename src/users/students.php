@@ -27,8 +27,8 @@
 
                         echo "<div class='button-container'>";
 
-                            echo "<button type='button' class='edit-button' onclick='openEditModal(" . json_encode($row['ID']) . ");'>Editar</button>";
-                            echo "<button class='delete-button' onclick='event.preventDefault(); editModal({$row['ID']});')'><i class='fas fa-trash'></i> Eliminar</button>";
+                            echo "<button type='button' class='edit-button' onclick='openEditModal(" . json_encode($row) . ");'>Editar</button>";
+                            echo "<button class='delete-button' onclick='openDeleteStudentConfirmation(" . json_encode($row['ID']) . ")'><i class='fas fa-trash'></i> Eliminar</button>";
                         
                         echo "</div>";
                         
@@ -46,3 +46,37 @@
     echo "</table>"
 
 ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const modal = document.getElementById("modalEdit");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.querySelector('.btn-cancel').onclick = function() {
+        modal.style.display = "none";
+    }
+});
+
+function openEditModal(rowData) {
+    const modal = document.getElementById("modalEdit");
+    modal.style.display = "block";
+
+    document.getElementById("editID").value = rowData.ID;
+    document.getElementById("editNombre").value = rowData.nombre;
+    document.getElementById("editMatricula").value = rowData.ID;
+    document.getElementById("editCorreo").value = rowData.correo;
+    document.getElementById("editCarrera").value = rowData.carrera;
+}
+
+
+</script>

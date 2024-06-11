@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadCurrentView();
             modal.style.display = 'none'; // Cierra la modal después de la acción
         }).fail(function() {
-            alert('Error al eliminar estudiante');
+            alert('Error al eliminar maquina');
         });
     };
 });
