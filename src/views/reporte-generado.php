@@ -254,19 +254,17 @@
       const { jsPDF } = window.jspdf;
       const reportContent = document.getElementById('report-content');
 
-      html2canvas(reportContent).then(canvas => {
+      html2canvas(reportContent, { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
+        const pdfWidth = canvas.width * 0.264583; 
+        const pdfHeight = canvas.height * 0.264583;
+        
+        const pdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight]);
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save('reporte.pdf');
+        pdf.save('Reporte IngeniaLab.pdf');
       });
     });
-</script>
-
+  </script>
 </body>
 
 </html>
