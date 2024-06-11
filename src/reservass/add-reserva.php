@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $year = $data['year'];
 
     // Obtener el idUsuario de la sesión actual y el id de la máquina seleccionada
-    $idUsuario = $_SESSION['idUsuario'] ?? 1;  
+    $idUsuario = $_SESSION['idUsuario'] ?? null;  
     $maquina = $_SESSION['machine_id'] ?? null; 
 
     // Construir las fechas de inicio y final
