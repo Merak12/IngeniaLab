@@ -1,6 +1,6 @@
-<div id="modalEdit" class="modalEdit">
+<div id="modalEdit" class="modal">
     <div class="modalEdit-content">
-        <span class="close">&times;</span>
+        <span class="close" data-modal="modalEdit">&times;</span>
         <h2>Editar Estudiante</h2>
         <form id="editForm">
 
@@ -36,9 +36,33 @@
             </div>
             <div class="form-buttons">
                 <button type="submit" class="btn-accept">Guardar Cambios</button>
-                <button type="button" class="btn-cancel">Cerrar</button>
+                <button type="button" class="cancel-btn" data-modal="modalEdit">Cerrar</button>
             </div>
             
         </form>
     </div>
 </div>
+
+<script>
+document.getElementById('editForm').onsubmit = function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('/TC2005B_602_01/IngeniaLab/src/users/update-student.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            loadCurrentView()
+        } else {
+            alert('Error al actualizar el estudiante: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
+</script>

@@ -3,6 +3,7 @@
     <div class="modalAdd-content">
         <span class="close" data-modal="addMachineModal">&times;</span>
         <h2>Agregar nueva máquina</h2>
+
         <form id="addMachineForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="numSerie">Número de serie: </label>
@@ -41,8 +42,6 @@
     
 </div>
 
-<script src="/TC2005B_602_01/IngeniaLab/public/js/modal.js"></script>
-
 <script>
     
     document.addEventListener("DOMContentLoaded", function() {
@@ -76,12 +75,6 @@
             });
         };
         
-    });
-
-    document.querySelectorAll('.close, .cancel-btn').forEach(function(element) {
-        element.onclick = function() {
-            document.getElementById('addMachineModal').style.display = 'none';
-        };
     });
 
 </script>

@@ -28,6 +28,7 @@
             <i class="fas fa-home"></i>
             <span class="link-text">Inicio</span>
         </a>
+        
     </li>
     <li class="nav-item">
         <a href="../views/apartar.php" class="nav-link">
