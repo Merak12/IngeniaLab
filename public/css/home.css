@@ -385,16 +385,16 @@ h2 {
 }
 
 /* Agrega esto a tus estilos existentes */
-/* .sidebar + #main-content {
+.sidebar + #main-content {
     margin-left: 5vw; 
     transition: margin-left var(--transition-speed);
     padding: 1rem;
-} */
-/* 
+}
+
 .sidebar.expanded {
     width: 200px; 
 
-} */
+}
 
 sidebar.expanded + #main-content {
     margin-left: 200px;
