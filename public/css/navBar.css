@@ -13,10 +13,10 @@ body, html {
 }
 
 .sidebar {
-    width: 7.5vw;
+    width: 50px;
     height: 100vh;
     position: fixed;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary); 
     transition: width var(--transition-speed) ease;
     top: 0;
     left: 0;
@@ -28,6 +28,7 @@ body, html {
 .sidebar-nav {
     list-style: none;
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,7 +79,7 @@ body, html {
 }
 
 .main-content {
-    margin-left: 50px;
+    margin-left: 30px;
     transition: margin-left var(--transition-speed);
     padding: 1rem;
 }
@@ -141,7 +142,7 @@ body, html {
 
     .main-content {
         margin-left: 0;
-        padding-top: 60px; /* Asegura que el contenido no quede cubierto por el botón */
+        padding-top: 5px; /* Asegura que el contenido no quede cubierto por el botón */
     }
 
     .sidebar.expanded {

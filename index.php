@@ -7,26 +7,29 @@
     <link rel="stylesheet" href="public/css/styles.css">
     <link rel="stylesheet" href="public/css/users.css">
     <link rel="stylesheet" href="public/css/navBar.css">
-
+    
+ 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <div class="sidebar" id="sidebar">
-        <ul class="sidebar-nav">
-            <li class="nav-item">
-                <a href="src/views/login.php" class="nav-link">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="link-text">Iniciar Sesión</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+        <div class="sidebar" id="sidebar">
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="src/views/login.php" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="link-text">Iniciar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="main-content">
 
+
+    <div class="main-content" id="main-content">
+        
         <div class="header">
 
             <h1>Laboratorio de Mecatronica</h1>
